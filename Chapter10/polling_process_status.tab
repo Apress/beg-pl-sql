@@ -1,0 +1,13 @@
+rem polling_process_status.tab
+rem by Donald J. Bales on 12/15/2006
+rem A table to act as a status port for a polling process
+
+execute drop_if_exists('table', 'POLLING_PROCESS_STATUS');
+create table POLLING_PROCESS_STATUS (
+status                         varchar2(256)                  not null,
+update_user                    varchar2(30)  default USER     not null,
+update_date                    date          default SYSDATE  not null)
+tablespace USERS pctfree 0
+storage (initial 1M next 1M);
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'POLLING_PROCESS_STATUS');

@@ -1,0 +1,33 @@
+rem test.tab
+rem by Donald Bales on 12/15/2006
+rem Create test results
+
+execute drop_if_exists('TABLE','TEST_T');
+create table TEST_T (
+id                             number                         not null,
+object_name                    varchar2(30),
+method_name                    varchar2(30),
+test_number                    number,
+description                    varchar2(80),
+result                         varchar2(256),
+unique_session_id              varchar2(24)                   not null,
+insert_user                    varchar2(30)  default USER     not null,
+insert_date                    date          default SYSDATE  not null )
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+alter  table TEST_T add
+constraint   TEST_T_PK
+primary key (
+id )
+using index
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+execute drop_if_exists('SEQUENCE','TEST_ID_SEQ');
+create sequence TEST_ID_SEQ
+start with 1 order;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'TEST_T');
+
+grant all on TEST_T to PUBLIC;

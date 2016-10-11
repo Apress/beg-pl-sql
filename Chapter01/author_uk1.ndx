@@ -1,0 +1,5 @@
+CREATE UNIQUE INDEX author_uk1 
+on                  author (
+name,
+birth_date,
+gender );

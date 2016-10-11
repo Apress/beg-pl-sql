@@ -1,0 +1,14 @@
+rem workplace_type_t.ins
+rem by Donald J. Bales on 12/15/2006 
+rem Add workplace type code values
+
+insert into WORKPLACE_TYPE_T ( id, logical_indicator, physical_indicator, code, description ) values ( WORKPLACE_TYPE_ID_SEQ.nextval, 'Y', 'N', 'B', 'Business Unit' );
+insert into WORKPLACE_TYPE_T ( id, logical_indicator, physical_indicator, code, description ) values ( WORKPLACE_TYPE_ID_SEQ.nextval, 'Y', 'N', 'C', 'Company' );
+insert into WORKPLACE_TYPE_T ( id, logical_indicator, physical_indicator, code, description ) values ( WORKPLACE_TYPE_ID_SEQ.nextval, 'Y', 'N', 'D', 'Department' );
+insert into WORKPLACE_TYPE_T ( id, logical_indicator, physical_indicator, code, description ) values ( WORKPLACE_TYPE_ID_SEQ.nextval, 'N', 'Y', 'L', 'Line' );
+insert into WORKPLACE_TYPE_T ( id, logical_indicator, physical_indicator, code, description ) values ( WORKPLACE_TYPE_ID_SEQ.nextval, 'N', 'Y', 'M', 'Machine' );
+insert into WORKPLACE_TYPE_T ( id, logical_indicator, physical_indicator, code, description ) values ( WORKPLACE_TYPE_ID_SEQ.nextval, 'N', 'Y', 'S', 'Site' );
+insert into WORKPLACE_TYPE_T ( id, logical_indicator, physical_indicator, code, description ) values ( WORKPLACE_TYPE_ID_SEQ.nextval, 'Y', 'Y', 'U', 'Unknown' );
+commit;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'WORKPLACE_TYPE_T');

@@ -1,0 +1,228 @@
+rem physical_workplace_t.ins
+rem by Donald J. Bales on 12/15/2006
+rem Seed the PHYSICAL_WORKPLACE_T table
+
+declare
+
+-- S=Site, L=Line, M=Machine
+n_WT_line                             WORKPLACE_TYPE_T.id%TYPE;
+n_WT_machine                          WORKPLACE_TYPE_T.id%TYPE;
+n_WT_site                             WORKPLACE_TYPE_T.id%TYPE;
+
+n_parent_id_line                      PHYSICAL_WORKPLACE_T.parent_id%TYPE;
+n_parent_id_site                      PHYSICAL_WORKPLACE_T.parent_id%TYPE;
+
+r_physical_workplace                  PHYSICAL_WORKPLACE_T%ROWTYPE;
+
+begin
+  n_WT_line                                  := WORKPLACE_TYPE_TS.get_id('L');  
+  n_WT_machine                               := WORKPLACE_TYPE_TS.get_id('M');  
+  n_WT_site                                  := WORKPLACE_TYPE_TS.get_id('S');  
+  
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_site;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := NULL;
+  r_physical_workplace.code                  := 'NNJ';
+  r_physical_workplace.name                  := 'NEWARK, NJ, USA'; 
+  r_physical_workplace.active_date           := to_date('19600101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+
+  n_parent_id_site                           := r_physical_workplace.id;
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_line;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_site;
+  r_physical_workplace.code                  := 'CHEM';
+  r_physical_workplace.name                  := 'CHEMICALS'; 
+  r_physical_workplace.active_date           := to_date('19600101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+
+  n_parent_id_line                           := r_physical_workplace.id;
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'MIX1';
+  r_physical_workplace.name                  := 'MIXER 1'; 
+  r_physical_workplace.active_date           := to_date('19600101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'DIS1';
+  r_physical_workplace.name                  := 'DISTILLER 1'; 
+  r_physical_workplace.active_date           := to_date('19600101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_line;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_site;
+  r_physical_workplace.code                  := 'METL';
+  r_physical_workplace.name                  := 'METALS'; 
+  r_physical_workplace.active_date           := to_date('19600101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+  n_parent_id_line                           := r_physical_workplace.id;
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'SEP1';
+  r_physical_workplace.name                  := 'SEPERATOR 1'; 
+  r_physical_workplace.active_date           := to_date('19600101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'CRS1';
+  r_physical_workplace.name                  := 'CRUSHER 1'; 
+  r_physical_workplace.active_date           := to_date('19600101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+
+    
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_site;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := NULL;
+  r_physical_workplace.code                  := 'GIN';
+  r_physical_workplace.name                  := 'GARY, IN, USA'; 
+  r_physical_workplace.active_date           := to_date('19640101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+  
+  n_parent_id_site                           := r_physical_workplace.id;
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_line;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_site;
+  r_physical_workplace.code                  := 'DISP';
+  r_physical_workplace.name                  := 'DISPOSABLES'; 
+  r_physical_workplace.active_date           := to_date('19640101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+
+  n_parent_id_line                           := r_physical_workplace.id;
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'SEP2';
+  r_physical_workplace.name                  := 'SEPERATOR 2'; 
+  r_physical_workplace.active_date           := to_date('19640101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'CRS2';
+  r_physical_workplace.name                  := 'CRUSHER 2'; 
+  r_physical_workplace.active_date           := to_date('19640101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_line;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_site;
+  r_physical_workplace.code                  := 'RUSE';
+  r_physical_workplace.name                  := 'REUSABLES'; 
+  r_physical_workplace.active_date           := to_date('19640101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+  n_parent_id_line                           := r_physical_workplace.id;
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'SEP3';
+  r_physical_workplace.name                  := 'SEPERATOR 3'; 
+  r_physical_workplace.active_date           := to_date('19640101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'CRS3';
+  r_physical_workplace.name                  := 'CRUSHER 3'; 
+  r_physical_workplace.active_date           := to_date('19640101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+
+    
+  
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_site;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := NULL;
+  r_physical_workplace.code                  := 'LCA';
+  r_physical_workplace.name                  := 'LOS ANGELES, CA, USA'; 
+  r_physical_workplace.active_date           := to_date('19680101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+    
+  n_parent_id_line                           := r_physical_workplace.id;
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'GRV1';
+  r_physical_workplace.name                  := 'GRAVITRON 1'; 
+  r_physical_workplace.active_date           := to_date('19720101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'DST2';
+  r_physical_workplace.name                  := 'DISTILLER 2'; 
+  r_physical_workplace.active_date           := to_date('19720101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+
+  r_physical_workplace.id                    := NULL;
+  r_physical_workplace.workplace_type_id     := n_WT_machine;
+  r_physical_workplace.id_context            := NULL;
+  r_physical_workplace.parent_id             := n_parent_id_line;
+  r_physical_workplace.code                  := 'INC1';
+  r_physical_workplace.name                  := 'INCINERATOR 1'; 
+  r_physical_workplace.active_date           := to_date('19640101', 'YYYYMMDD'); 
+  r_physical_workplace.inactive_date         := NULL;
+  PHYSICAL_WORKPLACE_TS.set_row(r_physical_workplace);
+  
+  commit;
+end;
+/
+  

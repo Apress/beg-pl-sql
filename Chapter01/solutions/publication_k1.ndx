@@ -1,0 +1,5 @@
+CREATE INDEX publication_k1
+on           publication (
+title );
+
+SYS.DBMS_STATS.gather_table_stats(USER, 'PUBLICATION');

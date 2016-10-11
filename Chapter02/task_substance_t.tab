@@ -1,0 +1,52 @@
+rem task_substance_t.tab
+rem by Donald J. Bales on 12/15/2006
+rem Create a table to hold the substances assicated with a task
+
+execute drop_if_exists('table', 'TASK_SUBSTANCE_T');
+create table TASK_SUBSTANCE_T (
+id                             number                         not null,
+task_id                        number                         not null,
+substance_id                   number                         not null,
+hazard_level_id                number                         not null,
+active_date                    date          default SYSDATE  not null,
+inactive_date                  date )
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+execute drop_if_exists('sequence', 'TASK_SUBSTANCE_ID_SEQ');
+create sequence TASK_SUBSTANCE_ID_SEQ
+start with 1;
+
+alter  table TASK_SUBSTANCE_T add
+constraint   TASK_SUBSTANCE_T_PK
+primary key ( id )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table TASK_SUBSTANCE_T add
+constraint   TASK_SUBSTANCE_T_UK
+unique ( 
+task_id,
+substance_id,
+active_date )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table TASK_SUBSTANCE_T add
+constraint   TASK_SUBSTANCE_T_FK1
+foreign key         ( task_id )
+references   TASK_T ( id );
+
+alter  table TASK_SUBSTANCE_T add
+constraint   TASK_SUBSTANCE_T_FK2
+foreign key              ( substance_id )
+references   SUBSTANCE_T ( id );
+
+alter  table TASK_SUBSTANCE_T add
+constraint   TASK_SUBSTANCE_T_FK3
+foreign key                 ( hazard_level_id )
+references   HAZARD_LEVEL_T ( id );
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'TASK_SUBSTANCE_T');

@@ -1,0 +1,29 @@
+rem email_log.tab
+rem by Donald Bales on 12/15/2006
+rem Create an email log table
+
+execute drop_if_exists('TABLE', 'EMAIL_LOG');
+create table EMAIL_LOG (
+id                             number                         not null,
+text                           varchar2(256),
+unique_session_id              varchar2(24)                   not null,
+insert_user                    varchar2(30)  default USER     not null,
+insert_date                    date          default SYSDATE  not null )
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+alter  table EMAIL_LOG add
+constraint   EMAIL_LOG_PK
+primary key (
+id )
+using index
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+execute drop_if_exists('SEQUENCE', 'EMAIL_LOG_ID_SEQ');
+create sequence EMAIL_LOG_ID_SEQ
+start with 1 order;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'EMAIL_LOG');
+
+grant all on EMAIL_LOG to PUBLIC;

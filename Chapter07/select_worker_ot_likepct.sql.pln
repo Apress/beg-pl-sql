@@ -1,0 +1,31 @@
+
+Explained.
+
+Plan hash value: 2430037530
+
+-----------------------------------------------------------------------
+| Id  | Operation                    | Name          | Rows  | Bytes | 
+-----------------------------------------------------------------------
+|   0 | SELECT STATEMENT             |               |     1 |    61 | 
+|   1 |  SORT ORDER BY               |               |     1 |    61 | 
+|   2 |   TABLE ACCESS BY INDEX ROWID| WORKER_OT     |     1 |    61 | 
+|*  3 |    INDEX RANGE SCAN          | WORKER_OT_UK2 |     1 |       | 
+-----------------------------------------------------------------------
+
+-----------------------
+Cost (%CPU)| Time     |
+-----------------------
+    6  (17)| 00:00:01 |
+    6  (17)| 00:00:01 |
+    5   (0)| 00:00:01 |
+    3   (0)| 00:00:01 |
+-----------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - access("NAME" LIKE 'DOE%')
+       filter("NAME" LIKE 'DOE%')
+
+16 rows selected.
+

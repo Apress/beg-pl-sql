@@ -1,0 +1,226 @@
+<html>
+<head>
+<title>WORKER_TS</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package WORKER_TS</h2>
+<p class="comments_p">
+worker_ts.pks
+Copyright by Don Bales on 12/15/2006
+Table WORKER_T's methods.
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Global Constants and Variables</th></tr>
+</table>
+<pre class="other_pre">
+</pre><p class="comments_p">
+Keep track of the number of inserts and updates
+</p><pre class="other_pre">
+n_inserted                            number := 0;
+n_updated                             number := 0;
+</pre>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#get_age_8"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Calculate age based on the specified birth data and day</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_age_13"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Calcualte age based on the specified birth date and today</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_age_17"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the age of the specified worker on the specified day</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_age_22"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the age of the specified worker as of today</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_birth_date_26"><span class="method_name_span">get_birth_date</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the specified worker's birth date</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_external_id_30"><span class="method_name_span">get_external_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the next available external ID value from its sequence</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_id_33"><span class="method_name_span">get_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the next available primar key ID value from its sequence</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_id_36"><span class="method_name_span">get_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the primary key ID value for the specified external ID value</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_formatted_name_40"><span class="method_name_span">get_formatted_name</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns a name properly formatted for the current locale</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_formatted_name_46"><span class="method_name_span">get_formatted_name</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns a name for the specified worker properly formatted for the current locale</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_row_50"><span class="method_name_span">get_row</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns a matching worker row</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_unformatted_name_54"><span class="method_name_span">get_unformatted_name</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns an unformmated name</span></td></tr>
+<tr><td class="method_name_td"><a href="#is_duplicate_61"><span class="method_name_span">is_duplicate</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> gender already exists in the database</span></td></tr>
+<tr><td class="method_name_td"><a href="#help_67"><span class="method_name_span">help</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Text-based help for this package</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_row_69"><span class="method_name_span">set_row</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Insert or update the specified row into the database</span></td></tr>
+<tr><td class="method_name_td"><a href="#test_72"><span class="method_name_span">test</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> This package's test units</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#get_age_8">get_age</a></h3>
+<pre class="method_pre">
+FUNCTION get_age(
+aid_birth_date                 in     WORKER_T.birth_date%TYPE,
+aid_on                         in     date)
+return                                number
+</pre>
+<p class="comments_p">
+Calculate age based on the specified birth data and day
+</p>
+<hr/>
+<h3><a name="#get_age_13">get_age</a></h3>
+<pre class="method_pre">
+FUNCTION get_age(
+aid_birth_date                 in     WORKER_T.birth_date%TYPE)
+return                                number
+</pre>
+<p class="comments_p">
+Calcualte age based on the specified birth date and today
+</p>
+<hr/>
+<h3><a name="#get_age_17">get_age</a></h3>
+<pre class="method_pre">
+FUNCTION get_age(
+ain_id                         in     WORKER_T.id%TYPE,
+aid_on                         in     date)
+return                                number
+</pre>
+<p class="comments_p">
+Returns the age of the specified worker on the specified day
+</p>
+<hr/>
+<h3><a name="#get_age_22">get_age</a></h3>
+<pre class="method_pre">
+FUNCTION get_age(
+ain_id                         in     WORKER_T.id%TYPE)
+return                                number
+</pre>
+<p class="comments_p">
+Returns the age of the specified worker as of today
+</p>
+<hr/>
+<h3><a name="#get_birth_date_26">get_birth_date</a></h3>
+<pre class="method_pre">
+FUNCTION get_birth_date(
+ain_id                         in     WORKER_T.id%TYPE)
+return                                WORKER_T.birth_date%TYPE
+</pre>
+<p class="comments_p">
+Returns the specified worker's birth date
+</p>
+<hr/>
+<h3><a name="#get_external_id_30">get_external_id</a></h3>
+<pre class="method_pre">
+FUNCTION get_external_id
+return                                WORKER_T.external_id%TYPE
+</pre>
+<p class="comments_p">
+Returns the next available external ID value from its sequence
+</p>
+<hr/>
+<h3><a name="#get_id_33">get_id</a></h3>
+<pre class="method_pre">
+FUNCTION get_id
+return                                WORKER_T.id%TYPE
+</pre>
+<p class="comments_p">
+Returns the next available primar key ID value from its sequence
+</p>
+<hr/>
+<h3><a name="#get_id_36">get_id</a></h3>
+<pre class="method_pre">
+FUNCTION get_id(
+aiv_external_id                in     WORKER_T.external_id%TYPE)
+return                                WORKER_T.id%TYPE
+</pre>
+<p class="comments_p">
+Returns the primary key ID value for the specified external ID value
+</p>
+<hr/>
+<h3><a name="#get_formatted_name_40">get_formatted_name</a></h3>
+<pre class="method_pre">
+FUNCTION get_formatted_name(
+aiv_first_name                 in     WORKER_T.first_name%TYPE,
+aiv_middle_name                in     WORKER_T.middle_name%TYPE,
+aiv_last_name                  in     WORKER_T.last_name%TYPE)
+return                                WORKER_T.name%TYPE
+</pre>
+<p class="comments_p">
+Returns a name properly formatted for the current locale
+</p>
+<hr/>
+<h3><a name="#get_formatted_name_46">get_formatted_name</a></h3>
+<pre class="method_pre">
+FUNCTION get_formatted_name(
+ain_id                         in     WORKER_T.id%TYPE)
+return                                WORKER_T.name%TYPE
+</pre>
+<p class="comments_p">
+Returns a name for the specified worker properly formatted for the current locale
+</p>
+<hr/>
+<h3><a name="#get_row_50">get_row</a></h3>
+<pre class="method_pre">
+FUNCTION get_row(
+air_worker                     in     WORKER_T%ROWTYPE)
+return                                WORKER_T%ROWTYPE
+</pre>
+<p class="comments_p">
+Returns a matching worker row
+</p>
+<hr/>
+<h3><a name="#get_unformatted_name_54">get_unformatted_name</a></h3>
+<pre class="method_pre">
+FUNCTION get_unformatted_name(
+aiv_first_name                 in     WORKER_T.first_name%TYPE,
+aiv_middle_name                in     WORKER_T.middle_name%TYPE,
+aiv_last_name                  in     WORKER_T.last_name%TYPE)
+return                                WORKER_T.name%TYPE
+</pre>
+<p class="comments_p">
+Returns an unformmated name
+</p>
+<hr/>
+<h3><a name="#is_duplicate_61">is_duplicate</a></h3>
+<pre class="method_pre">
+FUNCTION is_duplicate(
+aiv_name                       in     WORKER_T.name%TYPE,
+aid_birth_date                 in     WORKER_T.birth_date%TYPE,
+ain_gender_id                  in     WORKER_T.gender_id%TYPE)
+return                                boolean
+</pre>
+<p class="comments_p">
+gender already exists in the database
+</p>
+<hr/>
+<h3><a name="#help_67">help</a></h3>
+<pre class="method_pre">
+PROCEDURE help
+</pre>
+<p class="comments_p">
+Text-based help for this package.  "set serveroutput on" in SQL*Plus.
+</p>
+<hr/>
+<h3><a name="#set_row_69">set_row</a></h3>
+<pre class="method_pre">
+PROCEDURE set_row(
+aior_worker                    in out WORKER_T%ROWTYPE)
+</pre>
+<p class="comments_p">
+Insert or update the specified row into the database
+</p>
+<hr/>
+<h3><a name="#test_72">test</a></h3>
+<pre class="method_pre">
+PROCEDURE test
+</pre>
+<p class="comments_p">
+This package's test units
+</p>
+<hr/>
+</body>
+</html>

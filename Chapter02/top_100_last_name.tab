@@ -1,0 +1,15 @@
+rem top_100_last_name.tab
+rem by Donald J. Bales on 12/15/2006
+rem Top 100 last names from www.namestatistics.com
+
+execute drop_if_exists('table','TOP_100_LAST_NAME');
+create table TOP_100_LAST_NAME (
+last_name                      varchar2(30));
+
+alter  table TOP_100_LAST_NAME add
+constraint   TOP_100_LAST_NAME_PK
+primary key (
+last_name)
+using index;
+
+@top_100_last_name.ins

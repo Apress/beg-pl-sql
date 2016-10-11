@@ -1,0 +1,34 @@
+rem report_wkhst.tab
+rem by Donald J. Bales
+rem Create a staging tabel for a Worker History report
+
+execute drop_if_exists('TABLE', 'REPORT_WKHST');
+create table REPORT_WKHST (
+report_wkhst_id                number                         not null,
+report_wkhst_seq               number                         not null,
+worker_id                      number                         not null,
+worker_name                    varchar2(100)                  not null,
+active_date                    date,
+logical_workplace_name         varchar2(80),
+physical_workplace_name        varchar2(80),
+work_name                      varchar2(80),
+inactive_date                  date,
+insert_user                    varchar2(30)  default USER     not null,
+insert_date                    date          default SYSDATE  not null)
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+alter  table REPORT_WKHST add
+constraint   REPORT_WKHST_PK
+primary key (
+report_wkhst_id,
+report_wkhst_seq )
+using index
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+execute drop_if_exists('SEQUENCE', 'REPORT_WKHST_ID_SEQ');
+create sequence REPORT_WKHST_ID_SEQ
+start with 1 order;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'REPORT_WKHST');

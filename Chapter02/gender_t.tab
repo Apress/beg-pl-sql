@@ -1,0 +1,33 @@
+rem gender_t.tab
+rem by Donald J. Bales on 12/15/2006 
+rem Create a table to hold gender code values
+
+--drop   table GENDER_T;
+create table GENDER_T (
+id                             number                         not null,
+code                           varchar2(30)                   not null,
+description                    varchar2(80)                   not null,
+active_date                    date          default SYSDATE  not null,
+inactive_date                  date )
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+--drop   sequence GENDER_ID_SEQ;
+create sequence GENDER_ID_SEQ
+start with 1;
+
+alter  table GENDER_T add
+constraint   GENDER_T_PK
+primary key ( id )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table GENDER_T add
+constraint   GENDER_UK
+unique ( code )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+SYS.DBMS_STATS.gather_table_stats(USER, 'GENDER_T');

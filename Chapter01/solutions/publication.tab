@@ -1,0 +1,4 @@
+CREATE TABLE publication (
+id                             number,
+title                          varchar2(100),
+written_date                   date );

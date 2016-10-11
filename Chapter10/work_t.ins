@@ -1,0 +1,36 @@
+rem work_ts.ins
+rem by Donald J. Bales on 12/15/2006
+rem Seed the WORK_T table
+
+declare
+
+begin
+  WORK_TS.set_row('P0', 'PRESIDENT',       to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('V0', 'VICE PRESIDENT',  to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('D0', 'DIRECTOR',        to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('M0', 'MANAGER',         to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('E1', 'ENGINEER 1',      to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('E2', 'ENGINEER 2',      to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('E3', 'ENGINEER 3',      to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('O1', 'OPERATOR 1',      to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('O2', 'OPERATOR 2',      to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('O3', 'OPERATOR 3',      to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('W1', 'WELDER 1',        to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('W2', 'WELDER 2',        to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('W3', 'WELDER 3',        to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('A1', 'ADMINISTRATOR 1', to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('A2', 'ADMINISTRATOR 2', to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('A3', 'ADMINISTRATOR 3', to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('C1', 'CLERK 1',         to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('C2', 'CLERK 2',         to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('C3', 'CLERK 3',         to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('P1', 'PROGRAMMER 1',    to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('P2', 'PROGRAMMER 2',    to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('P3', 'PROGRAMMER 3',    to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('Y1', 'ANALYST 1',       to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('Y2', 'ANALYST 2',       to_date('19600101', 'YYYYMMDD'), NULL);
+  WORK_TS.set_row('Y3', 'ANALYST 3',       to_date('19600101', 'YYYYMMDD'), NULL);
+  
+  commit;
+end;
+/

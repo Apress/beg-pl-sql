@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>TEST_TS</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package TEST_TS</h2>
+<p class="comments_p">
+test_ts.pks
+by Donald J. Bales on 12/15/2006
+A Testing package
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Global Constants and Variables</th></tr>
+</table>
+<pre class="other_pre">
+</pre><p class="comments_p">
+Result constants
+</p><pre class="other_pre">
+v_TEST_ERROR                constant  varchar2(5) := 'ERROR';
+v_TEST_OK                   constant  varchar2(2) := 'OK';
+v_TEST_SUCCESS              constant  varchar2(7) := 'SUCCESS';
+</pre><p class="comments_p">
+Testing constants
+</p><pre class="other_pre">
+d_TEST_19000101             constant  date        :=
+to_date('19000101', 'YYYYMMDD');
+d_TEST_19991231             constant  date        :=
+to_date('19000101', 'YYYYMMDD');
+v_TEST_N                    constant  varchar2(1) := 'N';
+v_TEST_Y                    constant  varchar2(1) := 'Y';
+v_TEST_30                   constant  varchar2(30) :=
+'TEST TEST TEST TEST TEST TESTx';
+v_TEST_30_1                 constant  varchar2(30) :=
+'TEST1 TEST1 TEST1 TEST1 TEST1x';
+v_TEST_30_2                 constant  varchar2(30) :=
+'TEST2 TEST2 TEST2 TEST2 TEST2x';
+v_TEST_80                   constant  varchar2(80) :=
+'Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Testx';
+v_TEST_100                  constant  varchar2(100) :=
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Testx';
+v_TEST_2000                 constant  varchar2(2000) :=
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Test '||
+'Test Test Test Test Test Test Test Test Test Testx';
+</pre>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#clear_71"><span class="method_name_span">clear</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Clear the results of the last test</span></td></tr>
+<tr><td class="method_name_td"><a href="#error_74"><span class="method_name_span">error</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Set the result of the last test to v_TEST_ERROR</span></td></tr>
+<tr><td class="method_name_td"><a href="#error_76"><span class="method_name_span">error</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Set the result of the last test to the passed Oracle error</span></td></tr>
+<tr><td class="method_name_td"><a href="#help_79"><span class="method_name_span">help</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Display help text</span></td></tr>
+<tr><td class="method_name_td"><a href="#initialize_81"><span class="method_name_span">initialize</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Instantiate the package</span></td></tr>
+<tr><td class="method_name_td"><a href="#ok_83"><span class="method_name_span">ok</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Set the result of the last test to v_TEST_OK</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_result_85"><span class="method_name_span">set_result</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Update the test with it's results</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_test_88"><span class="method_name_span">set_test</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Add a test</span></td></tr>
+<tr><td class="method_name_td"><a href="#success_94"><span class="method_name_span">success</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Set the result of the last test to v_TEST_SUCCESS</span></td></tr>
+<tr><td class="method_name_td"><a href="#test_96"><span class="method_name_span">test</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Test unit</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#clear_71">clear</a></h3>
+<pre class="method_pre">
+PROCEDURE clear(
+aiv_object_name                       TEST_T.object_name%TYPE)
+</pre>
+<p class="comments_p">
+Clear the results of the last test
+</p>
+<hr/>
+<h3><a name="#error_74">error</a></h3>
+<pre class="method_pre">
+PROCEDURE error
+</pre>
+<p class="comments_p">
+Set the result of the last test to v_TEST_ERROR
+</p>
+<hr/>
+<h3><a name="#error_76">error</a></h3>
+<pre class="method_pre">
+PROCEDURE error(
+aiv_result                     in     TEST_T.result%TYPE)
+</pre>
+<p class="comments_p">
+Set the result of the last test to the passed Oracle error
+</p>
+<hr/>
+<h3><a name="#help_79">help</a></h3>
+<pre class="method_pre">
+PROCEDURE help
+</pre>
+<p class="comments_p">
+Display help text
+</p>
+<hr/>
+<h3><a name="#initialize_81">initialize</a></h3>
+<pre class="method_pre">
+PROCEDURE initialize
+</pre>
+<p class="comments_p">
+Instantiate the package
+</p>
+<hr/>
+<h3><a name="#ok_83">ok</a></h3>
+<pre class="method_pre">
+PROCEDURE ok
+</pre>
+<p class="comments_p">
+Set the result of the last test to v_TEST_OK
+</p>
+<hr/>
+<h3><a name="#set_result_85">set_result</a></h3>
+<pre class="method_pre">
+PROCEDURE set_result(
+aiv_result                     in     TEST_T.result%TYPE)
+</pre>
+<p class="comments_p">
+Update the test with it's results
+</p>
+<hr/>
+<h3><a name="#set_test_88">set_test</a></h3>
+<pre class="method_pre">
+PROCEDURE set_test(
+aiv_object_name                in     TEST_T.object_name%TYPE,
+aiv_method_name                in     TEST_T.method_name%TYPE,
+ain_test_number                in     TEST_T.test_number%TYPE,
+aiv_description                in     TEST_T.description%TYPE)
+</pre>
+<p class="comments_p">
+Add a test
+</p>
+<hr/>
+<h3><a name="#success_94">success</a></h3>
+<pre class="method_pre">
+PROCEDURE success
+</pre>
+<p class="comments_p">
+Set the result of the last test to v_TEST_SUCCESS
+</p>
+<hr/>
+<h3><a name="#test_96">test</a></h3>
+<pre class="method_pre">
+PROCEDURE test
+</pre>
+<p class="comments_p">
+Test unit
+</p>
+<hr/>
+</body>
+</html>

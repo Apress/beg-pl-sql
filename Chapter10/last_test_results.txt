@@ -1,0 +1,65 @@
+
+TEST                                T# DESCRIPTION                 RESULT
+---------------------------------- --- --------------------------- -------
+WORK_ASSIGNMENT_TS DELETE            0 Delete existing test entrie OK
+                                       s from WORK_ASSIGNMENT_T
+
+WORK_ASSIGNMENT_TS DELETE            1 Delete existing test entrie OK
+                                       s from WORK_T
+
+WORK_ASSIGNMENT_TS DELETE            2 Delete existing test entrie OK
+                                       s from WORKER_T
+
+WORK_ASSIGNMENT_TS INSERT            3 Insert WORKER_T test entrie OK
+                                       s using set_row()
+
+WORK_ASSIGNMENT_TS INSERT            4 Insert WORK_T test entries  OK
+                                       using set_row()
+
+WORK_ASSIGNMENT_TS.GET_ID()          5 Allocate the next primary k OK
+                                       ey value using get_id()
+
+WORK_ASSIGNMENT_TS.SET_ROW()         6 Insert history for v_TEST_3 OK
+                                       0 using set_row()
+
+WORK_ASSIGNMENT_TS.SET_ROW()         7 Insert history for V_TEST_3 OK
+                                       0_1 using set_row()
+
+WORK_ASSIGNMENT_TS.SET_ROW()         8 Insert history for V_TEST_3 OK
+                                       0_2 using set_row()
+
+WORK_ASSIGNMENT_TS.GET_WORK()        9 Get the current work workpl OK
+                                       ace for v_TEST_30
+
+WORK_ASSIGNMENT_TS.GET_WORK()       10 Get the work workplace on 6 OK
+                                       /30/1995 for v_TEST_30_1
+
+WORK_ASSIGNMENT_TS.GET_WORK()       11 Get the work workplace on 6 OK
+                                       /30/1995 for v_TEST_30_2
+
+WORK_ASSIGNMENT_TS.HELP()           12 Test help()                 OK
+WORK_ASSIGNMENT_TS.IS_ACTIVE()      13 Is there an active assignme OK
+                                       nt on 6/30/1995 for v_TEST_
+                                       30?
+
+WORK_ASSIGNMENT_TS.IS_ACTIVE()      14 Is there an active assignme OK
+                                       nt on 6/30/1995 for v_TEST_
+                                       30_1?
+
+WORK_ASSIGNMENT_TS.IS_ACTIVE()      15 Is there currently an activ OK
+                                       e assignment for v_TEST_30_
+                                       2?
+
+WORK_ASSIGNMENT_TS DELETE           16 Delete existing test entrie OK
+                                       s from WORK_ASSIGNMENT_T
+
+WORK_ASSIGNMENT_TS DELETE           17 Delete existing test entrie OK
+                                       s from WORK_T
+
+WORK_ASSIGNMENT_TS DELETE           18 Delete existing test entrie OK
+                                       s from WORKER_T
+
+WORK_ASSIGNMENT_TS                                                 SUCCESS
+
+20 rows selected.
+

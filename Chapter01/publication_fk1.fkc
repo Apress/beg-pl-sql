@@ -1,0 +1,4 @@
+ALTER TABLE publication ADD
+CONSTRAINT  publication_fk1
+FOREIGN KEY        (id)
+REFERENCES  author (id);

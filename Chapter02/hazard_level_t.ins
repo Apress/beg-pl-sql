@@ -1,0 +1,13 @@
+rem hazard_level_t.ins
+rem by Donald J. Bales on 12/15/2006 
+rem Add code values to hazard level
+
+insert into HAZARD_LEVEL_T ( id, magnitude, code, description ) values ( HAZARD_LEVEL_ID_SEQ.nextval,  0, 'N', 'None' );
+insert into HAZARD_LEVEL_T ( id, magnitude, code, description ) values ( HAZARD_LEVEL_ID_SEQ.nextval,  2, 'M', 'May Be Bad' );
+insert into HAZARD_LEVEL_T ( id, magnitude, code, description ) values ( HAZARD_LEVEL_ID_SEQ.nextval,  4, 'B', 'Bad' );
+insert into HAZARD_LEVEL_T ( id, magnitude, code, description ) values ( HAZARD_LEVEL_ID_SEQ.nextval,  6, 'U', 'Unknown' );
+insert into HAZARD_LEVEL_T ( id, magnitude, code, description ) values ( HAZARD_LEVEL_ID_SEQ.nextval,  8, 'R', 'Really Bad' );
+insert into HAZARD_LEVEL_T ( id, magnitude, code, description ) values ( HAZARD_LEVEL_ID_SEQ.nextval, 10, 'W', 'Wholly Crap (as not to offend anyone)' );
+commit;
+
+SYS.DBMS_STATS.gather_table_stats(USER, 'HAZARD_LEVEL_T');

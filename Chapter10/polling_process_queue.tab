@@ -1,0 +1,25 @@
+rem polling_process_queue.tab
+rem by Donald J. Bales on 12/15/2006
+rem A table to act as a command queue for a polling process
+
+execute drop_if_exists('TABLE', 'POLLING_PROCESS_QUEUE');
+create table POLLING_PROCESS_QUEUE (
+id                             number                         not null,
+command                        varchar2(256)                  not null,
+insert_user                    varchar2(30)  default USER     not null,
+insert_date                    date          default SYSDATE  not null)
+tablespace USERS pctfree 0
+storage (initial 1M next 1M);
+
+alter  table POLLING_PROCESS_QUEUE add
+constraint   POLLING_PROCESS_QUEUE_PK
+primary key(id)
+using index
+tablespace USERS pctfree 0
+storage (initial 1M next 1M);
+
+execute drop_if_exists('SEQUENCE', 'POLLING_PROCESS_QUEUE_ID_SEQ');
+create sequence POLLING_PROCESS_QUEUE_ID_SEQ
+start with 1 order;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'POLLING_PROCESS_QUEUE');

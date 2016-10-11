@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>DATES</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package DATES</h2>
+<p class="comments_p">
+dates.pks
+by Donald J. Bales on 12/15/2006
+Additional DATE data type methods.
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Global Constants and Variables</th></tr>
+</table>
+<pre class="other_pre">
+</pre><p class="comments_p">
+The maximum and minimum dates values.
+</p><pre class="other_pre">
+d_MAX                        constant date := to_date('99991231235959', 'YYYYMMDDHH24MISS');
+d_MIN                        constant date := to_date('-47120101', 'SYYYYMMDD');
+</pre>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#end_of_day_8"><span class="method_name_span">end_of_day</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the specified date with the time set to 23:59:59, therefore, the end of the day</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_max_12"><span class="method_name_span">get_max</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns constant d_MAX</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_min_15"><span class="method_name_span">get_min</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns constant d_MIN</span></td></tr>
+<tr><td class="method_name_td"><a href="#help_18"><span class="method_name_span">help</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Text-based help for this package</span></td></tr>
+<tr><td class="method_name_td"><a href="#random_20"><span class="method_name_span">random</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns a randomly generated date that exists between the years specified</span></td></tr>
+<tr><td class="method_name_td"><a href="#start_of_day_25"><span class="method_name_span">start_of_day</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the specified date with the time set to 00:00:00, therefore, the start of the day</span></td></tr>
+<tr><td class="method_name_td"><a href="#test_29"><span class="method_name_span">test</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Test unit for this package</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#end_of_day_8">end_of_day</a></h3>
+<pre class="method_pre">
+FUNCTION end_of_day(
+aid_date                       in     date )
+return                                date
+</pre>
+<p class="comments_p">
+Returns the specified date with the time set to 23:59:59, therefore, the end of the day.
+</p>
+<hr/>
+<h3><a name="#get_max_12">get_max</a></h3>
+<pre class="method_pre">
+FUNCTION get_max
+return                                date
+</pre>
+<p class="comments_p">
+Returns constant d_MAX.  This is useful in SQL statements where the constant DATES.d_MAX is not accessible.
+</p>
+<hr/>
+<h3><a name="#get_min_15">get_min</a></h3>
+<pre class="method_pre">
+FUNCTION get_min
+return                                date
+</pre>
+<p class="comments_p">
+Returns constant d_MIN.  This is useful in SQL statements where the constant DATES.d_MIN is not accessible.
+</p>
+<hr/>
+<h3><a name="#help_18">help</a></h3>
+<pre class="method_pre">
+PROCEDURE help
+</pre>
+<p class="comments_p">
+Text-based help for this package.  "set serveroutput on" in SQL*Plus.
+</p>
+<hr/>
+<h3><a name="#random_20">random</a></h3>
+<pre class="method_pre">
+FUNCTION random(
+ain_starting_year              in     number,
+ain_ending_year                in     number )
+return                                date
+</pre>
+<p class="comments_p">
+Returns a randomly generated date that exists between the years specified.
+</p>
+<hr/>
+<h3><a name="#start_of_day_25">start_of_day</a></h3>
+<pre class="method_pre">
+FUNCTION start_of_day(
+aid_date                       in     date )
+return                                date
+</pre>
+<p class="comments_p">
+Returns the specified date with the time set to 00:00:00, therefore, the start of the day.
+</p>
+<hr/>
+<h3><a name="#test_29">test</a></h3>
+<pre class="method_pre">
+PROCEDURE test
+</pre>
+<p class="comments_p">
+Test unit for this package.
+</p>
+<hr/>
+</body>
+</html>

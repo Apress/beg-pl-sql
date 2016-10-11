@@ -1,0 +1,7 @@
+ALTER TABLE publication ADD
+CONSTRAINT  publication_pk
+PRIMARY KEY (
+id,
+title);
+
+SYS.DBMS_STATS.gather_table_stats(USER, 'PUBLICATION');

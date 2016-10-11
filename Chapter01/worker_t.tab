@@ -1,0 +1,61 @@
+rem worker_t.tab
+rem by Donald J. Bales on 12/15/2006
+rem 
+
+--drop   table WORKER_T;
+create table WORKER_T (
+id                             number                         not null,
+worker_type_id                 number                         not null,
+external_id                    varchar2(30)                   not null,
+first_name                     varchar2(30)                   not null,
+middle_name                    varchar2(30),
+last_name                      varchar2(30)                   not null,
+name                           varchar2(100)                  not null,
+birth_date                     date                           not null,
+gender_id                      number                         not null )
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+--drop   sequence WORKER_ID_SEQ;
+create sequence WORKER_ID_SEQ
+start with 1;
+
+--drop   sequence EXTERNAL_ID_SEQ;
+create sequence EXTERNAL_ID_SEQ
+start with 100000000 order;
+
+alter  table WORKER_T add
+constraint   WORKER_T_PK
+primary key ( id )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table WORKER_T add
+constraint   WORKER_T_UK1
+unique ( external_id )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table WORKER_T add
+constraint   WORKER_T_UK2
+unique (
+name,
+birth_date,
+gender_id )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table WORKER_T add
+constraint   WORKER_T_FK1
+foreign key                ( worker_type_id )
+references   WORKER_TYPE_T ( id );
+
+alter  table WORKER_T add
+constraint   WORKER_T_FK2
+foreign key                ( gender_id )
+references   GENDER_T      ( id );
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'WORKER_T');

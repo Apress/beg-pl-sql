@@ -1,0 +1,38 @@
+rem report_staging_table_log.tab
+rem by Donald J. Bales on 12/15/2006
+rem Create a log table for on-demand data processing packages
+
+execute drop_if_exists('TABLE', 'REPORT_STAGING_TABLE_LOG');
+create table REPORT_STAGING_TABLE_LOG (
+id                             number                         not null,
+object_name                    varchar2(30)                   not null,
+method_name                    varchar2(30)                   not null,
+rows_selected                  number,
+rows_inserted                  number,
+rows_updated                   number,
+rows_deleted                   number,
+result                         varchar2(256),                          
+elapsed_time                   number,
+insert_user                    varchar2(30)  default USER     not null,
+insert_date                    date          default SYSDATE  not null,
+update_user                    varchar2(30)  default USER     not null,
+update_date                    date          default SYSDATE  not null)
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+alter table REPORT_STAGING_TABLE_LOG add
+constraint  REPORT_STAGING_TABLE_LOG_PK
+primary key (
+id )
+using index
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+--                                  123456789012345678901234567890
+execute drop_if_exists('SEQUENCE', 'REPORT_STAGING_TABLE_LOG_ID_SE');
+create sequence REPORT_STAGING_TABLE_LOG_ID_SE
+start with 1 order;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'REPORT_STAGING_TABLE_LOG');
+
+grant select on REPORT_STAGING_TABLE_LOG to public;

@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>DEBUG_TS</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package DEBUG_TS</h2>
+<p class="comments_p">
+debug_ts.pks
+by Donald J. Bales on 12/15/2006
+Table DEBUG_T's package
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#get_id_5"><span class="method_name_span">get_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Gets the next primary key value for the table</span></td></tr>
+<tr><td class="method_name_td"><a href="#enable_8"><span class="method_name_span">enable</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Enable debug output for the specified program unit</span></td></tr>
+<tr><td class="method_name_td"><a href="#disable_11"><span class="method_name_span">disable</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Disable debug output for the specified program unit</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_text_14"><span class="method_name_span">set_text</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Log debug output if enabled for the specified program unit</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#get_id_5">get_id</a></h3>
+<pre class="method_pre">
+FUNCTION get_id
+return                                DEBUG_T.id%TYPE
+</pre>
+<p class="comments_p">
+Gets the next primary key value for the table
+</p>
+<hr/>
+<h3><a name="#enable_8">enable</a></h3>
+<pre class="method_pre">
+PROCEDURE enable(
+aiv_program_unit               in     varchar2)
+</pre>
+<p class="comments_p">
+Enable debug output for the specified program unit
+</p>
+<hr/>
+<h3><a name="#disable_11">disable</a></h3>
+<pre class="method_pre">
+PROCEDURE disable(
+aiv_program_unit               in     varchar2)
+</pre>
+<p class="comments_p">
+Disable debug output for the specified program unit
+</p>
+<hr/>
+<h3><a name="#set_text_14">set_text</a></h3>
+<pre class="method_pre">
+PROCEDURE set_text(
+aiv_program_unit               in     varchar2,
+aiv_text                       in     DEBUG_T.text%TYPE)
+</pre>
+<p class="comments_p">
+Log debug output if enabled for the specified program unit
+</p>
+<hr/>
+</body>
+</html>

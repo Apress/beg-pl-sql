@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>WEEKLY_INTERFACE</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package WEEKLY_INTERFACE</h2>
+<p class="comments_p">
+weekly_interface.pks
+by Donald J. Bales on 12/15/2006
+An example of a weekly interface process
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#download_5"><span class="method_name_span">download</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Download the data source to its staging area</span></td></tr>
+<tr><td class="method_name_td"><a href="#is_downloaded_7"><span class="method_name_span">is_downloaded</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns TRUE if the data source has been downloaded THIS week</span></td></tr>
+<tr><td class="method_name_td"><a href="#process_10"><span class="method_name_span">process</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Download if needed, then upload if needed, THIS week</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_downloaded_12"><span class="method_name_span">set_downloaded</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Record that the data source has been downloaded for THIS week</span></td></tr>
+<tr><td class="method_name_td"><a href="#upload_14"><span class="method_name_span">upload</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Upload the data source into the target relational structure</span></td></tr>
+<tr><td class="method_name_td"><a href="#is_verified_16"><span class="method_name_span">is_verified</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns TRUE is the data source's code have been verified</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#download_5">download</a></h3>
+<pre class="method_pre">
+PROCEDURE download
+</pre>
+<p class="comments_p">
+Download the data source to its staging area.
+</p>
+<hr/>
+<h3><a name="#is_downloaded_7">is_downloaded</a></h3>
+<pre class="method_pre">
+FUNCTION is_downloaded
+return                                number
+</pre>
+<p class="comments_p">
+Returns TRUE if the data source has been downloaded THIS week.
+</p>
+<hr/>
+<h3><a name="#process_10">process</a></h3>
+<pre class="method_pre">
+PROCEDURE process
+</pre>
+<p class="comments_p">
+Download if needed, then upload if needed, THIS week.
+</p>
+<hr/>
+<h3><a name="#set_downloaded_12">set_downloaded</a></h3>
+<pre class="method_pre">
+PROCEDURE set_downloaded
+</pre>
+<p class="comments_p">
+Record that the data source has been downloaded for THIS week.
+</p>
+<hr/>
+<h3><a name="#upload_14">upload</a></h3>
+<pre class="method_pre">
+PROCEDURE upload
+</pre>
+<p class="comments_p">
+Upload the data source into the target relational structure.
+</p>
+<hr/>
+<h3><a name="#is_verified_16">is_verified</a></h3>
+<pre class="method_pre">
+FUNCTION is_verified
+return                                boolean
+</pre>
+<p class="comments_p">
+Returns TRUE is the data source's code have been verified.
+</p>
+<hr/>
+</body>
+</html>

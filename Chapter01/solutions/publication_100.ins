@@ -1,0 +1,21 @@
+INSERT INTO publication (
+       id,
+       title,
+       written_date )
+VALUES (
+       100,
+       'A Relation Model of Data for Large Shared Data Banks',
+       to_date('19700101', 'YYYYMMDD') );
+
+INSERT INTO publication (
+       id,
+       title,
+       written_date )
+VALUES (
+       100,
+       'The Relational Model for Database Management',
+       to_date('19900101', 'YYYYMMDD') );
+       
+COMMIT;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'PUBLICATION');

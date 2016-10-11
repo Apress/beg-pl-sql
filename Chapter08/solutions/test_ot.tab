@@ -1,0 +1,25 @@
+rem test_ot.tab
+rem by Donald Bales on 12/15/2006
+rem Create test results
+
+execute drop_if_exists('TABLE','TEST_OT');
+table TEST_OT;
+create table TEST_OT of TEST_O
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+alter  table TEST_OT add
+constraint   TEST_OT_PK
+primary key (
+id )
+using index
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+--drop   sequence TEST_ID_SEQ;
+--create sequence TEST_ID_SEQ
+--start with 1 order;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'TEST_OT');
+
+grant all on TEST_OT to PUBLIC;

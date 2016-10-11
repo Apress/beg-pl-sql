@@ -1,0 +1,66 @@
+
+TEST                                T# DESCRIPTION                 RESULT
+---------------------------------- --- --------------------------- -------
+LOGICAL_ASSIGNMENT_TS DELETE         0 Delete existing test entrie OK
+                                       s from LOGICAL_ASSIGNMENT_T
+
+LOGICAL_ASSIGNMENT_TS DELETE         1 Delete existing test entrie OK
+                                       s from LOGICAL_WORKPLACE_T
+
+LOGICAL_ASSIGNMENT_TS DELETE         2 Delete existing test entrie OK
+                                       s from WORKER_T
+
+LOGICAL_ASSIGNMENT_TS INSERT         3 Insert WORKER_T test entrie OK
+                                       s using set_row()
+
+LOGICAL_ASSIGNMENT_TS INSERT         4 Insert LOGICAL_WORKPLACE_T  OK
+                                       test entries using set_row(
+                                       )
+
+LOGICAL_ASSIGNMENT_TS.GET_ID()       5 Allocate the next primary k OK
+                                       ey value using get_id()
+
+LOGICAL_ASSIGNMENT_TS.SET_ROW()      6 Insert history for v_TEST_3 OK
+                                       0 using set_row()
+
+LOGICAL_ASSIGNMENT_TS.SET_ROW()      7 Insert history for V_TEST_3 OK
+                                       0_1 using set_row()
+
+LOGICAL_ASSIGNMENT_TS.SET_ROW()      8 Insert history for V_TEST_3 OK
+                                       0_2 using set_row()
+
+LOGICAL_ASSIGNMENT_TS.GET_LOGICAL_   9 Get the current logical wor OK
+WORKPLACE()                            kplace for v_TEST_30
+
+LOGICAL_ASSIGNMENT_TS.GET_LOGICAL_  10 Get the logical workplace o OK
+WORKPLACE()                            n 6/30/1995 for v_TEST_30_1
+
+LOGICAL_ASSIGNMENT_TS.GET_LOGICAL_  11 Get the logical workplace o OK
+WORKPLACE()                            n 6/30/1995 for v_TEST_30_2
+
+LOGICAL_ASSIGNMENT_TS.HELP()        12 Test help()                 OK
+LOGICAL_ASSIGNMENT_TS.IS_ACTIVE()   13 Is there an active assignme OK
+                                       nt on 6/30/1995 for v_TEST_
+                                       30?
+
+LOGICAL_ASSIGNMENT_TS.IS_ACTIVE()   14 Is there an active assignme OK
+                                       nt on 6/30/1995 for v_TEST_
+                                       30_1?
+
+LOGICAL_ASSIGNMENT_TS.IS_ACTIVE()   15 Is there currently an activ OK
+                                       e assignment for v_TEST_30_
+                                       2?
+
+LOGICAL_ASSIGNMENT_TS DELETE        16 Delete existing test entrie OK
+                                       s from LOGICAL_ASSIGNMENT_T
+
+LOGICAL_ASSIGNMENT_TS DELETE        17 Delete existing test entrie OK
+                                       s from LOGICAL_WORKPLACE_T
+
+LOGICAL_ASSIGNMENT_TS DELETE        18 Delete existing test entrie OK
+                                       s from WORKER_T
+
+LOGICAL_ASSIGNMENT_TS                                              SUCCESS
+
+20 rows selected.
+

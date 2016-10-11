@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>LOGICAL_WORKPLACE_TS</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package LOGICAL_WORKPLACE_TS</h2>
+<p class="comments_p">
+logical_workplace_ts.pks <br/>
+by Don Bales on 12/15/2006 <br/>
+Table LOGICAL_WORKPLACE_T's methods.  Contains all the supporting service
+methods (functions and procedures) for table LOGICAL_WORKPLACE_T.
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Global Constants and Variables</th></tr>
+</table>
+<pre class="other_pre">
+</pre><p class="comments_p">
+Keep track of the number of inserts and updates to made by set_row( ).
+</p><pre class="other_pre">
+n_inserted                            number := 0;
+n_updated                             number := 0;
+</pre>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#create_id_context_12"><span class="method_name_span">create_id_context</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Returns an id_context for the specified parent_id and id</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_id_17"><span class="method_name_span">get_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Returns a new primary key id value for a row</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_code_context_20"><span class="method_name_span">get_code_context</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Returns the value of a context for the code values in the logical workplace assignment</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_name_context_24"><span class="method_name_span">get_name_context</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Returns the value of a context for the name values in the logical workplace assignment</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_row_34"><span class="method_name_span">get_row</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Returns a LOGICAL_WORKPLACE row for the specified criteria</span></td></tr>
+<tr><td class="method_name_td"><a href="#help_38"><span class="method_name_span">help</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Test-based help for this package</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_row_41"><span class="method_name_span">set_row</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Updates or inserts a row matching the passed parameters into table LOGICAL_WORKPLACE_T</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_row_58"><span class="method_name_span">set_row</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Updates or inserts a row matching the passed row into table LOGICAL_WORKPLACE_T</span></td></tr>
+<tr><td class="method_name_td"><a href="#test_61"><span class="method_name_span">test</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Performs unit tests for this package</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#create_id_context_12">create_id_context</a></h3>
+<pre class="method_pre">
+FUNCTION create_id_context(
+ain_parent_id                  in     LOGICAL_WORKPLACE_T.parent_id%TYPE,
+ain_id                         in     LOGICAL_WORKPLACE_T.id%TYPE)
+return                                varchar2
+</pre>
+<p class="comments_p">
+Returns an id_context for the specified parent_id and id.
+Whatever creates a new row must also call this mehtod to create an appropriate
+id_context value.  Method set_row( ) does this for you.
+</p>
+<hr/>
+<h3><a name="#get_id_17">get_id</a></h3>
+<pre class="method_pre">
+FUNCTION get_id
+return                                LOGICAL_WORKPLACE_T.id%TYPE
+</pre>
+<p class="comments_p">
+Returns a new primary key id value for a row.
+</p>
+<hr/>
+<h3><a name="#get_code_context_20">get_code_context</a></h3>
+<pre class="method_pre">
+FUNCTION get_code_context(
+ain_id                         in     LOGICAL_WORKPLACE_T.id%TYPE)
+return                                varchar2
+</pre>
+<p class="comments_p">
+Returns the value of a context for the code values in the logical workplace assignment.
+</p>
+<hr/>
+<h3><a name="#get_name_context_24">get_name_context</a></h3>
+<pre class="method_pre">
+FUNCTION get_name_context(
+ain_id                         in     LOGICAL_WORKPLACE_T.id%TYPE)
+return                                varchar2
+</pre>
+<p class="comments_p">
+Returns the value of a context for the name values in the logical workplace assignment.
+</p>
+<hr/>
+<h3><a name="#get_row_34">get_row</a></h3>
+<pre class="method_pre">
+FUNCTION get_row(
+air_logical_workplace          in     LOGICAL_WORKPLACE_T%ROWTYPE)
+return                                LOGICAL_WORKPLACE_T%ROWTYPE
+</pre>
+<p class="comments_p">
+Returns a LOGICAL_WORKPLACE row for the specified criteria.
+There are three sets of criteria.  You can retrieve a row by specifying:<br/>
+1. the primary key: id<br/>
+2. the unique id_context<br/>
+3. the code, name, and active_date<br/>
+If a match is found the function returns the corresponding row, otherwise
+it returns NULL.  It will raise any exceptions except NO_DATA_FOUND.
+</p>
+<hr/>
+<h3><a name="#help_38">help</a></h3>
+<pre class="method_pre">
+PROCEDURE help
+</pre>
+<p class="comments_p">
+Test-based help for this package.  "set serveroutput on" in SQL*Plus.
+</p>
+<hr/>
+<h3><a name="#set_row_41">set_row</a></h3>
+<pre class="method_pre">
+FUNCTION set_row(
+ain_parent_id                  in     LOGICAL_WORKPLACE_T.parent_id%TYPE,
+ain_workplace_type_id          in     LOGICAL_WORKPLACE_T.workplace_type_id%TYPE,
+aiv_code                       in     LOGICAL_WORKPLACE_T.code%TYPE,
+aiv_name                       in     LOGICAL_WORKPLACE_T.name%TYPE,
+aid_active_date                in     LOGICAL_WORKPLACE_T.active_date%TYPE)
+return                                LOGICAL_WORKPLACE_T.id%TYPE
+</pre>
+<p class="comments_p">
+Updates or inserts a row matching the passed parameters into table LOGICAL_WORKPLACE_T.
+See PROCEDURE set_row( ).
+</p>
+<hr/>
+<h3><a name="#set_row_58">set_row</a></h3>
+<pre class="method_pre">
+PROCEDURE set_row(
+aior_logical_workplace         in out LOGICAL_WORKPLACE_T%ROWTYPE)
+</pre>
+<p class="comments_p">
+Updates or inserts a row matching the passed row into table LOGICAL_WORKPLACE_T.
+First, set_row() calls get row to try to find a matching row that already
+exists in the database.  So you need to set the id, id_context,
+and code, name and active_date appropriately in order to prperly detect an
+existing row.
+Next, if an existing row is found, any non-key data items are updated to match
+the passed row.  Otherwise, and new row is inserted, including the allocation of
+a new primary key and id_context value.  Upon inserting a new value, the
+id and id_context values are updated in the passed row.
+See PROCEDURE get_row( );
+</p>
+<hr/>
+<h3><a name="#test_61">test</a></h3>
+<pre class="method_pre">
+PROCEDURE test
+</pre>
+<p class="comments_p">
+Performs unit tests for this package.
+</p>
+<hr/>
+</body>
+</html>

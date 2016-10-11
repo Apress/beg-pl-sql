@@ -1,0 +1,52 @@
+rem work_task_t.tab
+rem by Donald J. Bales on 12/15/2006
+rem Create a table to hold the tasks associated with a work definition
+
+execute drop_if_exists('table', 'WORK_TASK_T');
+create table WORK_TASK_T (
+id                             number                         not null,
+work_id                        number                         not null,
+task_id                        number                         not null,
+hazard_level_id                number                         not null,
+active_date                    date          default SYSDATE  not null,
+inactive_date                  date )
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+execute drop_if_exists('sequence', 'WORK_TASK_ID_SEQ');
+create sequence WORK_TASK_ID_SEQ
+start with 1;
+
+alter  table WORK_TASK_T add
+constraint   WORK_TASK_T_PK
+primary key ( id )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table WORK_TASK_T add
+constraint   WORK_TASK_T_UK
+unique ( 
+work_id,
+task_id,
+active_date )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table WORK_TASK_T add
+constraint   WORK_TASK_T_FK1
+foreign key         ( work_id )
+references   WORK_T ( id );
+
+alter  table WORK_TASK_T add
+constraint   WORK_TASK_T_FK2
+foreign key         ( task_id )
+references   TASK_T ( id );
+
+alter  table WORK_TASK_T add
+constraint   WORK_TASK_T_FK3
+foreign key                 ( hazard_level_id )
+references   HAZARD_LEVEL_T ( id );
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'WORK_TASK_T');

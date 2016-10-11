@@ -1,0 +1,118 @@
+declare
+
+-- Add worker history
+
+cursor c_logical_workplace is
+select l.id,
+       c1.code
+from   LOGICAL_WORKPLACE_T l,
+       WORKPLACE_TYPE_T c1
+where  l.workplace_type_id = c1.id       
+order by 1;
+
+cursor c_worker is
+select w.id
+from   WORKER_T w
+where  w.worker_type_id = (
+select c1.id
+from   WORKER_TYPE_T c1
+where  c1.code = 'E')
+order by w.birth_date desc,
+       w.id;
+
+r_logical_assignment                  LOGICAL_ASSIGNMENT_T%ROWTYPE;
+
+begin
+  LOGICAL_ASSIGNMENT_TS.n_inserted := 0;
+  LOGICAL_ASSIGNMENT_TS.n_updated  := 0;
+  
+  open c_worker;
+  
+  for r_logical_workplace in c_logical_workplace loop
+
+    if    c_logical_workplace%rowcount between  0 and  1 then
+      r_logical_assignment.id := NULL;
+      fetch c_worker into 
+        r_logical_assignment.worker_id;
+      exit when c_worker  %notfound;
+      r_logical_assignment.logical_workplace_id  :=
+        r_logical_workplace.id;
+      r_logical_assignment.active_date           := 
+        to_date('19600101', 'YYYYMMDD');
+      r_logical_assignment.inactive_date         := NULL;  
+      LOGICAL_ASSIGNMENT_TS.set_row(r_logical_assignment);
+    elsif c_logical_workplace%rowcount between  2 and  3 then
+      r_logical_assignment.id := NULL;
+      fetch c_worker into 
+        r_logical_assignment.worker_id;
+      exit when c_worker%notfound;
+      r_logical_assignment.logical_workplace_id  :=
+        r_logical_workplace.id;
+      r_logical_assignment.active_date           := 
+        to_date('19640101', 'YYYYMMDD');
+      r_logical_assignment.inactive_date         := NULL;  
+      LOGICAL_ASSIGNMENT_TS.set_row(r_logical_assignment);
+    elsif c_logical_workplace%rowcount between  4 and  7 then
+      r_logical_assignment.id := NULL;
+      fetch c_worker into 
+        r_logical_assignment.worker_id;
+      exit when c_worker%notfound;
+      r_logical_assignment.logical_workplace_id  :=
+        r_logical_workplace.id;
+      r_logical_assignment.active_date           := 
+        to_date('19680101', 'YYYYMMDD');
+      r_logical_assignment.inactive_date         := NULL;  
+      LOGICAL_ASSIGNMENT_TS.set_row(r_logical_assignment);
+    elsif c_logical_workplace%rowcount between  8 and 11 then
+      for i in 1..3652 loop
+        for j in 1..3652 loop
+          r_logical_assignment.id := NULL;
+          fetch c_worker into 
+            r_logical_assignment.worker_id;
+          exit when c_worker%notfound;
+          r_logical_assignment.logical_workplace_id  :=
+            r_logical_workplace.id;
+          r_logical_assignment.active_date           := 
+            to_date('19720101', 'YYYYMMDD')  + (30*i);
+          r_logical_assignment.inactive_date         := 
+            r_logical_assignment.active_date + (30*3652/j);
+          LOGICAL_ASSIGNMENT_TS.set_row(r_logical_assignment);
+        end loop;
+        exit when c_worker%notfound;
+      end loop;
+    else
+      for i in 1..3652 loop
+        for j in 1..3652 loop
+          r_logical_assignment.id := NULL;
+          fetch c_worker into 
+            r_logical_assignment.worker_id;
+          exit when c_worker%notfound;
+          r_logical_assignment.logical_workplace_id  :=
+            r_logical_workplace.id;
+          r_logical_assignment.active_date           := 
+            to_date('19760101', 'YYYYMMDD')  + (30*i);
+          r_logical_assignment.inactive_date         := 
+            r_logical_assignment.active_date + (30*3652/j);
+        end loop;
+        exit when c_worker%notfound;
+      end loop;
+      exit when c_worker%notfound;
+    end if;
+  end loop;
+   
+  if c_worker%notfound then
+    pl('I ran out of workers');
+  end if;
+  
+  close c_worker;
+  
+  update LOGICAL_ASSIGNMENT_T
+  set    inactive_date = NULL
+  where  inactive_date > SYSDATE;
+
+  commit;
+  pl(to_char(LOGICAL_ASSIGNMENT_TS.n_inserted)||' rows inserted.');
+  pl(to_char(LOGICAL_ASSIGNMENT_TS.n_updated)||' rows updated.');
+ end;
+ /
+ 

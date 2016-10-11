@@ -1,0 +1,30 @@
+...
+int               duplicate = 0;
+CallableStatement cstmt     = null;
+
+try {
+  // Create the callable statement
+  cstmt = conn.prepareCall(
+    "{ ? = call to_boolean_number(is_duplicate(?, ?, ?)) }");
+    
+  // Register the OUT parameter
+  cstmt.registerOutParameter(1, Types.INTEGER);
+  
+  // Set the IN parameters
+  cstmt.setString(2, code);
+  cstmt.setString(3, name);  
+  cstmt.setTimestamp(4, activeDate);
+  
+  // Execute the stored procedure
+  cstmt.execute();
+  
+  duplicate = cstmt.getInt(1);
+}
+catch (SQLException e) {
+  System.err.println("SQL Error: " + e.getMessage());
+}
+finally {
+  if (cstmt != null)
+    try {  cstmt.close(); } catch (SQLException ignore) { }
+}
+...

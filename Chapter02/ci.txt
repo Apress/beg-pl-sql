@@ -1,0 +1,30 @@
+SQL> declare
+  2  
+  3  cursor c1 is
+  4  select object_type,
+  5  	    object_name
+  6  from   SYS.USER_OBJECTS
+  7  where  status = 'INVALID'
+  8  order by 1, 2;
+  9  
+ 10  v_sql				   varchar2(100);
+ 11  
+ 12  begin
+ 13    for r1 in c1 loop
+ 14  	 begin
+ 15  	   if r1.object_type = 'PACKAGE BODY' then
+ 16  	     v_sql := 'alter PACKAGE '||r1.object_name||' compile BODY';
+ 17  	   else
+ 18  	     v_sql := 'alter '||r1.object_type||' '||r1.object_name||' compile';
+ 19  	   end if;
+ 20  	   execute immediate v_sql;
+ 21  	   pl(r1.object_type||' '||r1.object_name||' compiled successfully');
+ 22  	 exception
+ 23  	   when OTHERS then
+ 24  	     pl(SQLERRM||' on '||v_sql);
+ 25  	 end;
+ 26    end loop;
+ 27  end;
+ 28  /
+SQL> 
+SQL> spool off;

@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>EMAILS</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package EMAILS</h2>
+<p class="comments_p">
+emails.pks
+by Donald J. Bales on 12/15/2006
+Package to send emails
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Global Constants and Variables</th></tr>
+</table>
+<pre class="other_pre">
+</pre><p class="comments_p">
+An associative array (PL/SQL table) used to hold the lines of an email message
+</p><pre class="other_pre">
+TYPE LINES is table of varchar2(2000) index by binary_integer;
+</pre>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#get_domain_7"><span class="method_name_span">get_domain</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the domain value</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_host_10"><span class="method_name_span">get_host</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the host value</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_username_13"><span class="method_name_span">get_username</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Returns the username</span></td></tr>
+<tr><td class="method_name_td"><a href="#send_16"><span class="method_name_span">send</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Send an email message through the database</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_domain_22"><span class="method_name_span">set_domain</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Sets the domain value</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_host_25"><span class="method_name_span">set_host</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Sets the host value</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_password_28"><span class="method_name_span">set_password</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Sets the password value</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_username_31"><span class="method_name_span">set_username</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Sets the username value</span></td></tr>
+<tr><td class="method_name_td"><a href="#test_34"><span class="method_name_span">test</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> This package's test units</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#get_domain_7">get_domain</a></h3>
+<pre class="method_pre">
+FUNCTION get_domain
+return                                varchar2
+</pre>
+<p class="comments_p">
+Returns the domain value
+</p>
+<hr/>
+<h3><a name="#get_host_10">get_host</a></h3>
+<pre class="method_pre">
+FUNCTION get_host
+return                                varchar2
+</pre>
+<p class="comments_p">
+Returns the host value
+</p>
+<hr/>
+<h3><a name="#get_username_13">get_username</a></h3>
+<pre class="method_pre">
+FUNCTION get_username
+return                                varchar2
+</pre>
+<p class="comments_p">
+Returns the username
+</p>
+<hr/>
+<h3><a name="#send_16">send</a></h3>
+<pre class="method_pre">
+PROCEDURE send(
+aiv_from                       in     varchar2,
+aiv_to                         in     varchar2,
+aiv_subject                    in     varchar2,
+ait_lines                      in     LINES)
+</pre>
+<p class="comments_p">
+Send an email message through the database
+</p>
+<hr/>
+<h3><a name="#set_domain_22">set_domain</a></h3>
+<pre class="method_pre">
+PROCEDURE set_domain(
+aiv_domain                     in     varchar2)
+</pre>
+<p class="comments_p">
+Sets the domain value
+</p>
+<hr/>
+<h3><a name="#set_host_25">set_host</a></h3>
+<pre class="method_pre">
+PROCEDURE set_host(
+aiv_host                       in     varchar2)
+</pre>
+<p class="comments_p">
+Sets the host value
+</p>
+<hr/>
+<h3><a name="#set_password_28">set_password</a></h3>
+<pre class="method_pre">
+PROCEDURE set_password(
+aiv_password                   in     varchar2)
+</pre>
+<p class="comments_p">
+Sets the password value
+</p>
+<hr/>
+<h3><a name="#set_username_31">set_username</a></h3>
+<pre class="method_pre">
+PROCEDURE set_username(
+aiv_username                   in     varchar2)
+</pre>
+<p class="comments_p">
+Sets the username value
+</p>
+<hr/>
+<h3><a name="#test_34">test</a></h3>
+<pre class="method_pre">
+PROCEDURE test
+</pre>
+<p class="comments_p">
+This package's test units
+</p>
+<hr/>
+</body>
+</html>

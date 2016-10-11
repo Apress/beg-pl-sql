@@ -1,0 +1,348 @@
+
+
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       NULL,
+       to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'VDMI',
+       'VERY DIRTY MANUFACTURING, INC.',
+       to_date('19600101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t
+where  t.code = 'C';
+
+       
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'SALE',
+       'SALES',
+       to_date('19640101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'B'
+and    p.code        = 'VDMI'
+and    p.name        = 'VERY DIRTY MANUFACTURING, INC.'
+and    p.active_date = to_date('19600101', 'YYYYMMDD');
+
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'MKTG',
+       'MARKETING',
+       to_date('19640101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'B'
+and    p.code        = 'VDMI'
+and    p.name        = 'VERY DIRTY MANUFACTURING, INC.'
+and    p.active_date = to_date('19600101', 'YYYYMMDD');
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'ACCT',
+       'ACCOUNTING',
+       to_date('19680101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'B'
+and    p.code        = 'VDMI'
+and    p.name        = 'VERY DIRTY MANUFACTURING, INC.'
+and    p.active_date = to_date('19600101', 'YYYYMMDD');
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'PDEV',
+       'PRODUCT DEVELOPMENT',
+       to_date('19680101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'B'
+and    p.code        = 'VDMI'
+and    p.name        = 'VERY DIRTY MANUFACTURING, INC.'
+and    p.active_date = to_date('19600101', 'YYYYMMDD');
+
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'MFG',
+       'MANUFACTURING',
+       to_date('19680101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'B'
+and    p.code        = 'VDMI'
+and    p.name        = 'VERY DIRTY MANUFACTURING, INC.'
+and    p.active_date = to_date('19600101', 'YYYYMMDD');
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'CHEM',
+       'CHEMICALS',
+       to_date('19680101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'D'
+and    p.code        = 'MFG'
+and    p.name        = 'MANUFACTURING'
+and    p.active_date = to_date('19680101', 'YYYYMMDD');
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'BIO',
+       'BIOLOGICALS',
+       to_date('19720101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'D'
+and    p.code        = 'MFG'
+and    p.name        = 'MANUFACTURING'
+and    p.active_date = to_date('19680101', 'YYYYMMDD');
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'METL',
+       'METALS',
+       to_date('19720101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'D'
+and    p.code        = 'MFG'
+and    p.name        = 'MANUFACTURING'
+and    p.active_date = to_date('19680101', 'YYYYMMDD');
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'RUSE',
+       'REUSABLES',
+       to_date('19720101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'D'
+and    p.code        = 'MFG'
+and    p.name        = 'MANUFACTURING'
+and    p.active_date = to_date('19680101', 'YYYYMMDD');
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'DISP',
+       'DISPOSABLES',
+       to_date('19720101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'D'
+and    p.code        = 'MFG'
+and    p.name        = 'MANUFACTURING'
+and    p.active_date = to_date('19680101', 'YYYYMMDD');
+
+
+insert into LOGICAL_WORKPLACE_T (
+       id,
+       parent_id,
+       id_context,
+       workplace_type_id,
+       code,
+       name,
+       active_date )
+select LOGICAL_WORKPLACE_ID_SEQ.nextval,
+       p.id,
+       p.id_context||'.'||to_char(LOGICAL_WORKPLACE_ID_SEQ.currval),
+       t.id,
+       'HR',
+       'HUMAN RESOURCES',
+       to_date('19720101', 'YYYYMMDD')
+from   WORKPLACE_TYPE_T t,
+       LOGICAL_WORKPLACE_T p
+where  t.code        = 'B'
+and    p.code        = 'VDMI'
+and    p.name        = 'VERY DIRTY MANUFACTURING, INC.'
+and    p.active_date = to_date('19600101', 'YYYYMMDD');
+
+commit;
+
+-- but no IT?
+declare
+
+r_logical_workplace            LOGICAL_WORKPLACE_T%ROWTYPE;
+n_IT_id                        LOGICAL_WORKPLACE_T.id%TYPE;
+n_VDMI_id                      LOGICAL_WORKPLACE_T.id%TYPE;
+
+begin
+  -- first, get the company's id
+  -- set the record up to search by the code, name, and active_date
+  r_logical_workplace.code                  := 'VDMI';
+  r_logical_workplace.name                  := 'VERY DIRTY MANUFACTURING, INC.';
+  r_logical_workplace.active_date           := to_date('19600101', 'YYYYMMDD');
+  
+  r_logical_workplace := LOGICAL_WORKPLACE_TS.get_row(r_logical_workplace);
+  
+  n_VDMI_id           := r_logical_workplace.id;
+  
+  -- now that we have our company's id, let's add IT
+
+  r_logical_workplace.active_date           := to_date('19720101', 'YYYYMMDD');
+
+  r_logical_workplace.id := NULL;
+  r_logical_workplace.parent_id            := n_VDMI_id;
+  r_logical_workplace.id_context           := NULL;
+  r_logical_workplace.workplace_type_id    := WORKPLACE_TYPE_TS.get_id('B');
+  r_logical_workplace.code                 := 'IT';
+  r_logical_workplace.name                 := 'IRRITATING TECHNOLOGY';
+  LOGICAL_WORKPLACE_TS.set_row(r_logical_workplace);
+  
+  n_IT_id                                   := 
+    r_logical_workplace.id;
+    
+  r_logical_workplace.active_date           := to_date('19760101', 'YYYYMMDD');
+  
+  r_logical_workplace.id := NULL;
+  r_logical_workplace.parent_id            := n_IT_id;
+  r_logical_workplace.id_context           := NULL;
+  r_logical_workplace.workplace_type_id    := WORKPLACE_TYPE_TS.get_id('D');
+  r_logical_workplace.code                 := 'DP';
+  r_logical_workplace.name                 := 'DEPRESSED PROCESSING';
+  LOGICAL_WORKPLACE_TS.set_row(r_logical_workplace);
+
+  r_logical_workplace.id := NULL;
+  r_logical_workplace.parent_id            := n_IT_id;
+  r_logical_workplace.id_context           := NULL;
+  r_logical_workplace.workplace_type_id    := WORKPLACE_TYPE_TS.get_id('D');
+  r_logical_workplace.code                 := 'HSUP';
+  r_logical_workplace.name                 := 'HARDWEAR SUPPORT';
+  LOGICAL_WORKPLACE_TS.set_row(r_logical_workplace);
+
+  r_logical_workplace.id := NULL;
+  r_logical_workplace.parent_id            := n_IT_id;
+  r_logical_workplace.id_context           := NULL;
+  r_logical_workplace.workplace_type_id    := WORKPLACE_TYPE_TS.get_id('D');
+  r_logical_workplace.code                 := 'SDEV';
+  r_logical_workplace.name                 := 'SOFTWEAR DEVELOPMENT';
+  LOGICAL_WORKPLACE_TS.set_row(r_logical_workplace);
+
+  r_logical_workplace.id := NULL;
+  r_logical_workplace.parent_id            := n_IT_id;
+  r_logical_workplace.id_context           := NULL;
+  r_logical_workplace.workplace_type_id    := WORKPLACE_TYPE_TS.get_id('D');
+  r_logical_workplace.code                 := 'SINT';
+  r_logical_workplace.name                 := 'SILLINESS INTEGRATION';
+  LOGICAL_WORKPLACE_TS.set_row(r_logical_workplace);
+
+  r_logical_workplace.id := NULL;
+  r_logical_workplace.parent_id            := n_IT_id;
+  r_logical_workplace.id_context           := NULL;
+  r_logical_workplace.workplace_type_id    := WORKPLACE_TYPE_TS.get_id('D');
+  r_logical_workplace.code                 := 'SSUP';
+  r_logical_workplace.name                 := 'SOFTWEAR SUPPORT';
+  LOGICAL_WORKPLACE_TS.set_row(r_logical_workplace);
+
+end;
+/
+
+commit;

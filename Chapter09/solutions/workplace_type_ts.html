@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>WORKPLACE_TYPE_TS</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package WORKPLACE_TYPE_TS</h2>
+<p class="comments_p">
+workplace_type_ts.pks
+by Don Bales on 12/15/2006
+Table WORKPLACE_TYPE_T's methods.
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#get_code_descr_5"><span class="method_name_span">get_code_descr</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Gets the code and decription values for the specified id</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_code_id_descr_10"><span class="method_name_span">get_code_id_descr</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Verifies that the passed code value is an exact or like match on the date specified</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_code_id_descr_16"><span class="method_name_span">get_code_id_descr</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Verifies that the passed code value is currently an exact or like match</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_id_21"><span class="method_name_span">get_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Returns a new primary key id value for a row</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_id_24"><span class="method_name_span">get_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Returns the id for the specified code value</span></td></tr>
+<tr><td class="method_name_td"><a href="#help_28"><span class="method_name_span">help</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Test-based help for this package</span></td></tr>
+<tr><td class="method_name_td"><a href="#test_30"><span class="method_name_span">test</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Test units for this package</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#get_code_descr_5">get_code_descr</a></h3>
+<pre class="method_pre">
+PROCEDURE get_code_descr(
+ain_id                         in     WORKPLACE_TYPE_T.id%TYPE,
+aov_code                          out WORKPLACE_TYPE_T.code%TYPE,
+aov_description                   out WORKPLACE_TYPE_T.description%TYPE)
+</pre>
+<p class="comments_p">
+Gets the code and decription values for the specified id.
+</p>
+<hr/>
+<h3><a name="#get_code_id_descr_10">get_code_id_descr</a></h3>
+<pre class="method_pre">
+PROCEDURE get_code_id_descr(
+aiov_code                      in out WORKPLACE_TYPE_T.code%TYPE,
+aon_id                            out WORKPLACE_TYPE_T.id%TYPE,
+aov_description                   out WORKPLACE_TYPE_T.description%TYPE,
+aid_on                         in     WORKPLACE_TYPE_T.active_date%TYPE)
+</pre>
+<p class="comments_p">
+Verifies that the passed code value is an exact or like match on the date specified.
+</p>
+<hr/>
+<h3><a name="#get_code_id_descr_16">get_code_id_descr</a></h3>
+<pre class="method_pre">
+PROCEDURE get_code_id_descr(
+aiov_code                      in out WORKPLACE_TYPE_T.code%TYPE,
+aon_id                            out WORKPLACE_TYPE_T.id%TYPE,
+aov_description                   out WORKPLACE_TYPE_T.description%TYPE)
+</pre>
+<p class="comments_p">
+Verifies that the passed code value is currently an exact or like match.
+</p>
+<hr/>
+<h3><a name="#get_id_21">get_id</a></h3>
+<pre class="method_pre">
+FUNCTION get_id
+return                                WORKPLACE_TYPE_T.id%TYPE
+</pre>
+<p class="comments_p">
+Returns a new primary key id value for a row.
+</p>
+<hr/>
+<h3><a name="#get_id_24">get_id</a></h3>
+<pre class="method_pre">
+FUNCTION get_id(
+aiv_code                       in     WORKPLACE_TYPE_T.code%TYPE)
+return                                WORKPLACE_TYPE_T.id%TYPE
+</pre>
+<p class="comments_p">
+Returns the id for the specified code value.
+</p>
+<hr/>
+<h3><a name="#help_28">help</a></h3>
+<pre class="method_pre">
+PROCEDURE help
+</pre>
+<p class="comments_p">
+Test-based help for this package.  "set serveroutput on" in SQL*Plus.
+</p>
+<hr/>
+<h3><a name="#test_30">test</a></h3>
+<pre class="method_pre">
+PROCEDURE test
+</pre>
+<p class="comments_p">
+Test units for this package.
+</p>
+<hr/>
+</body>
+</html>

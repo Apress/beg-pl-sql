@@ -1,0 +1,21 @@
+
+COLUMN_NAME                           MIN        AVG        MAX     OCCURS
+------------------------------ ---------- ---------- ---------- ----------
+LOGICAL_INDICATOR                       1          1          1          1
+PHYSICAL_INDICATOR                      1          1          1          1
+CAS_NUMBER                             30         30         30          1
+CODE                                   30         30         30         10
+EXTERNAL_ID                            30         30         30          2
+FIRST_NAME                             30         30         30          2
+INSERT_USER                            30         30         30          1
+LAST_NAME                              30         30         30          2
+MIDDLE_NAME                            30         30         30          2
+TEST                                   30         30         30          1
+DESCRIPTION                            80         80         80          7
+ID_CONTEXT                            100        100        100          2
+NAME                                   80 85.7142857        100          7
+TITLE                                 100        100        100          1
+NARRATIVE                            2000       2000       2000          1
+
+15 rows selected.
+

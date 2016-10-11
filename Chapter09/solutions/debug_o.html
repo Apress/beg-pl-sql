@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>DEBUG_O</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Type DEBUG_O</h2>
+<p class="comments_p">
+debug_o.tps
+by Donald Bales on 12/15/2006
+Type DEBUG_O's specification:
+A type for logging debug information
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Attributes</th></tr>
+</table>
+<pre class="other_pre">
+</pre><p class="comments_p">
+debug_o.tps
+by Donald Bales on 12/15/2006
+Type DEBUG_O's specification:
+A type for logging debug information
+</p><pre class="other_pre">
+id                                    number,
+text                                  varchar2(256),
+unique_session_id                     varchar2(24),
+insert_user                           varchar2(30),
+insert_date                           date,
+</pre>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#get_id_11"><span class="method_name_span">get_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Get the next primary key value</span></td></tr>
+<tr><td class="method_name_td"><a href="#debug_o_14"><span class="method_name_span">debug_o</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> A NULL values constructor</span></td></tr>
+<tr><td class="method_name_td"><a href="#debug_o_18"><span class="method_name_span">debug_o</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> A convenience constructor</span></td></tr>
+<tr><td class="method_name_td"><a href="#debug_o_24"><span class="method_name_span">debug_o</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Override the default constructor</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_text_33"><span class="method_name_span">set_text</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Write to the debug object table</span></td></tr>
+<tr><td class="method_name_td"><a href="#to_map_37"><span class="method_name_span">to_map</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> A map function</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#get_id_11">get_id</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_id
+return                                number,
+</pre>
+<p class="comments_p">
+Get the next primary key value
+</p>
+<hr/>
+<h3><a name="#debug_o_14">debug_o</a></h3>
+<pre class="method_pre">
+CONSTRUCTOR FUNCTION debug_o(
+self                           in out nocopy debug_o)
+return                                self as result,
+</pre>
+<p class="comments_p">
+A NULL values constructor
+</p>
+<hr/>
+<h3><a name="#debug_o_18">debug_o</a></h3>
+<pre class="method_pre">
+CONSTRUCTOR FUNCTION debug_o(
+self                           in out nocopy debug_o,
+ain_id                         in     number,
+aiv_text                       in     varchar2)
+return                                self as result,
+</pre>
+<p class="comments_p">
+A convenience constructor
+</p>
+<hr/>
+<h3><a name="#debug_o_24">debug_o</a></h3>
+<pre class="method_pre">
+CONSTRUCTOR FUNCTION debug_o(
+self                           in out nocopy debug_o,
+id                             in     number,
+text                           in     varchar2,
+unique_session_id              in     varchar2,
+insert_user                    in     varchar2,
+insert_date                    in     date)
+return                                self as result,
+</pre>
+<p class="comments_p">
+Override the default constructor
+</p>
+<hr/>
+<h3><a name="#set_text_33">set_text</a></h3>
+<pre class="method_pre">
+STATIC PROCEDURE set_text(
+aiv_program_unit               in     varchar2,
+aiv_text                       in     varchar2),
+</pre>
+<p class="comments_p">
+Write to the debug object table
+</p>
+<hr/>
+<h3><a name="#to_map_37">to_map</a></h3>
+<pre class="method_pre">
+MAP MEMBER FUNCTION to_map
+return                                number
+) not final
+</pre>
+<p class="comments_p">
+A map function
+</p>
+<hr/>
+</body>
+</html>

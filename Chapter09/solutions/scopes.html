@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>SCOPES</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package SCOPES</h2>
+<p class="comments_p">
+scopes.pks
+by Donald J. Bales on 12/15/2006
+A package to test scope
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Global Constants and Variables</th></tr>
+</table>
+<pre class="other_pre">
+</pre><p class="comments_p">
+Here's a global variable declaration
+</p><pre class="other_pre">
+gv_scope                              varchar2(80) :=
+'I''m a global (or package spec) variable';
+</pre>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#my_scope_is_global_8"><span class="method_name_span">my_scope_is_global</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Here's a global (or package spec) function declaration</span></td></tr>
+<tr><td class="method_name_td"><a href="#my_scope_is_global_11"><span class="method_name_span">my_scope_is_global</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> Here's a global (or package spec) procedure declaration</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#my_scope_is_global_8">my_scope_is_global</a></h3>
+<pre class="method_pre">
+FUNCTION my_scope_is_global
+return                                varchar2
+</pre>
+<p class="comments_p">
+Here's a global (or package spec) function declaration
+</p>
+<hr/>
+<h3><a name="#my_scope_is_global_11">my_scope_is_global</a></h3>
+<pre class="method_pre">
+PROCEDURE my_scope_is_global
+</pre>
+<p class="comments_p">
+Here's a global (or package spec) procedure declaration
+</p>
+<hr/>
+</body>
+</html>

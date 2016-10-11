@@ -1,0 +1,2 @@
+DELETE FROM publication
+WHERE  id = 300;

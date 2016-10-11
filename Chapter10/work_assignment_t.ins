@@ -1,0 +1,355 @@
+declare
+
+-- Add worker history
+
+cursor c_logical_assignment is
+select a.worker_id,
+       a.active_date,
+       a.inactive_date,
+       w.code
+from   LOGICAL_ASSIGNMENT_T a,
+       LOGICAL_WORKPLACE_T w
+where  a.logical_workplace_id = w.id       
+order by 1;
+
+n_random                              number;
+r_work_assignment                     WORK_ASSIGNMENT_T%ROWTYPE;
+
+FUNCTION get_id(
+aiv_code                       in     WORK_T.code%TYPE)
+return                                WORK_T.id%TYPE is
+
+n_work_id                             WORK_T.id%TYPE;
+
+begin
+  select id
+  into   n_work_id
+  from   WORK_T
+  where  code = aiv_code;
+
+  return n_work_id;
+end get_id;
+  
+FUNCTION random(
+ain_min                        in     number,
+ain_max                        in     number )
+return                                number is
+
+begin
+  return round(SYS.DBMS_RANDOM.value(ain_min, ain_max), 0);
+end random;
+  
+begin
+  WORK_ASSIGNMENT_TS.n_inserted := 0;
+  WORK_ASSIGNMENT_TS.n_updated  := 0;
+  
+  for r_logical_assignment in c_logical_assignment loop
+    if    r_logical_assignment.code = 'VDMI' then
+      r_work_assignment.id                 := NULL;
+      r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+      r_work_assignment.work_id            := get_id('P0');
+      r_work_assignment.active_date        := r_logical_assignment.active_date;
+      r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+      WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+    elsif r_logical_assignment.code = 'SALE' then
+      r_work_assignment.id                 := NULL;
+      r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+      r_work_assignment.work_id            := get_id('V0');
+      r_work_assignment.active_date        := r_logical_assignment.active_date;
+      r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+      WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+    elsif r_logical_assignment.code = 'MKTG' then
+      r_work_assignment.id                 := NULL;
+      r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+      r_work_assignment.work_id            := get_id('V0');
+      r_work_assignment.active_date        := r_logical_assignment.active_date;
+      r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+      WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+    elsif r_logical_assignment.code = 'ACCT' then
+      r_work_assignment.id                 := NULL;
+      r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+      r_work_assignment.work_id            := get_id('V0');
+      r_work_assignment.active_date        := r_logical_assignment.active_date;
+      r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+      WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+    elsif r_logical_assignment.code = 'PDEV' then
+      r_work_assignment.id                 := NULL;
+      r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+      r_work_assignment.work_id            := get_id('V0');
+      r_work_assignment.active_date        := r_logical_assignment.active_date;
+      r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+      WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+    elsif r_logical_assignment.code = 'MFG'  then
+      r_work_assignment.id                 := NULL;
+      r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+      r_work_assignment.work_id            := get_id('V0');
+      r_work_assignment.active_date        := r_logical_assignment.active_date;
+      r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+      WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+    elsif r_logical_assignment.code in ('BIO', 'CHEM', 'DISP', 'METL', 'RUSE') then
+      if c_logical_assignment%rowcount > 18 then
+        n_random := random(1, 3);
+        if    n_random = 1 then
+          n_random := random(1, 3);
+          for i in 1..n_random loop
+            r_work_assignment.id := NULL;
+            r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+            if    i = 1 then
+              r_work_assignment.work_id          := get_id('O1');
+              r_work_assignment.active_date      := r_logical_assignment.active_date;
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            elsif i = 2 then
+              r_work_assignment.work_id          := get_id('O2');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            else
+              r_work_assignment.work_id          := get_id('O3');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            end if;
+            WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+          end loop;
+        elsif n_random = 2 then
+          n_random := random(1, 3);
+          for i in 1..n_random loop
+            r_work_assignment.id := NULL;
+            r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+            if    i = 1 then
+              r_work_assignment.work_id          := get_id('E1');
+              r_work_assignment.active_date      := r_logical_assignment.active_date;
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            elsif i = 2 then
+              r_work_assignment.work_id          := get_id('E2');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            else
+              r_work_assignment.work_id          := get_id('E3');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            end if;
+            WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+          end loop;
+        else
+          n_random := random(1, 3);
+          for i in 1..n_random loop
+            r_work_assignment.id := NULL;
+            r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+            if    i = 1 then
+              r_work_assignment.work_id          := get_id('W1');
+              r_work_assignment.active_date      := r_logical_assignment.active_date;
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            elsif i = 2 then
+              r_work_assignment.work_id          := get_id('W2');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            else
+              r_work_assignment.work_id          := get_id('W3');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            end if;
+            WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+          end loop;
+        end if;  
+      else
+        r_work_assignment.id := NULL;
+        r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+        r_work_assignment.work_id            := get_id('D0');
+        r_work_assignment.active_date        := r_logical_assignment.active_date;
+        r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+        WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+      end if;
+    elsif r_logical_assignment.code = 'HR'   then
+      if c_logical_assignment%rowcount > 18 then
+        n_random := random(1, 3);
+        if    n_random = 1 then
+          n_random := random(1, 3);
+          for i in 1..n_random loop
+            r_work_assignment.id := NULL;
+            r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+            if    i = 1 then
+              r_work_assignment.work_id          := get_id('A1');
+              r_work_assignment.active_date      := r_logical_assignment.active_date;
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            elsif i = 2 then
+              r_work_assignment.work_id          := get_id('A2');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            else
+              r_work_assignment.work_id          := get_id('A3');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            end if;
+            WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+          end loop;
+        elsif n_random = 2 then
+          n_random := random(1, 3);
+          for i in 1..n_random loop
+            r_work_assignment.id := NULL;
+            r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+            if    i = 1 then
+              r_work_assignment.work_id          := get_id('C1');
+              r_work_assignment.active_date      := r_logical_assignment.active_date;
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            elsif i = 2 then
+              r_work_assignment.work_id          := get_id('C2');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            else
+              r_work_assignment.work_id          := get_id('C3');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            end if;
+            WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+          end loop;
+        else
+          n_random := random(1, 3);
+          for i in 1..n_random loop
+            r_work_assignment.id := NULL;
+            r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+            if    i = 1 then
+              r_work_assignment.work_id          := get_id('M0');
+              r_work_assignment.active_date      := r_logical_assignment.active_date;
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            elsif i = 2 then
+              r_work_assignment.work_id          := get_id('A1');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            else
+              r_work_assignment.work_id          := get_id('C1');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            end if;
+            WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+          end loop;
+        end if;  
+      else
+        r_work_assignment.id := NULL;
+        r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+        r_work_assignment.work_id            := get_id('D0');
+        r_work_assignment.active_date        := r_logical_assignment.active_date;
+        r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+        WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+      end if;
+    elsif r_logical_assignment.code = 'IT'   then
+      r_work_assignment.id := NULL;
+      r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+      r_work_assignment.work_id := get_id('D0');
+      r_work_assignment.active_date        := r_logical_assignment.active_date;
+      r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+      WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+    elsif r_logical_assignment.code in ('DP', 'HSUP', 'SDEV', 'SINT', 'SSUP') then
+      if c_logical_assignment%rowcount > 18 then
+        n_random := random(1, 3);
+        if    n_random = 1 then
+          n_random := random(1, 3);
+          for i in 1..n_random loop
+            r_work_assignment.id := NULL;
+            r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+            if    i = 1 then
+              r_work_assignment.work_id          := get_id('A1');
+              r_work_assignment.active_date      := r_logical_assignment.active_date;
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            elsif i = 2 then
+              r_work_assignment.work_id          := get_id('A2');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            else
+              r_work_assignment.work_id          := get_id('A3');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            end if;
+            WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+          end loop;
+        elsif n_random = 2 then
+          n_random := random(1, 3);
+          for i in 1..n_random loop
+            r_work_assignment.id := NULL;
+            r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+            if    i = 1 then
+              r_work_assignment.work_id          := get_id('P1');
+              r_work_assignment.active_date      := r_logical_assignment.active_date;
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            elsif i = 2 then
+              r_work_assignment.work_id          := get_id('P2');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            else
+              r_work_assignment.work_id          := get_id('P3');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            end if;
+            WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+          end loop;
+        else
+          n_random := random(1, 3);
+          for i in 1..n_random loop
+            r_work_assignment.id := NULL;
+            r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+            if    i = 1 then
+              r_work_assignment.work_id          := get_id('Y0');
+              r_work_assignment.active_date      := r_logical_assignment.active_date;
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            elsif i = 2 then
+              r_work_assignment.work_id          := get_id('Y1');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            else
+              r_work_assignment.work_id          := get_id('Y1');
+              r_work_assignment.active_date      := trunc(r_work_assignment.inactive_date + 1);
+              r_work_assignment.inactive_date    := DATES.end_of_day(r_work_assignment.active_date + (
+                (nvl(r_logical_assignment.inactive_date, SYSDATE + 1) - r_logical_assignment.active_date)*(1/n_random)));
+            end if;
+            WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+          end loop;
+        end if;  
+      else
+        r_work_assignment.id := NULL;
+        r_work_assignment.worker_id          := r_logical_assignment.worker_id; 
+        r_work_assignment.work_id            := get_id('M0');
+        r_work_assignment.active_date        := r_logical_assignment.active_date;
+        r_work_assignment.inactive_date      := r_logical_assignment.inactive_date;
+        WORK_ASSIGNMENT_TS.set_row(r_work_assignment);
+      end if;
+    else
+      raise_application_error(-20000, 'Unsupported code');
+    end if;
+    
+  end loop;
+   
+  update work_assignment_t
+  set    inactive_date = NULL
+  where  inactive_date > SYSDATE;
+
+  commit;
+
+  pl(to_char(WORK_ASSIGNMENT_TS.n_inserted)||' rows inserted.');
+  pl(to_char(WORK_ASSIGNMENT_TS.n_updated)||' rows updated.');
+ end;
+ /
+ 

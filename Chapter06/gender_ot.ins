@@ -1,0 +1,10 @@
+rem gender_ot.ins
+rem copyright by Donald J. Bales on 12/15/2006 
+rem
+
+insert into GENDER_OT values ( gender_o( 'F', 'Female' ) );
+insert into GENDER_OT values ( gender_o( 'M', 'Male' ) );
+insert into GENDER_OT values ( gender_o( 'U', 'Unknown' ) );
+commit;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'GENDER_OT');

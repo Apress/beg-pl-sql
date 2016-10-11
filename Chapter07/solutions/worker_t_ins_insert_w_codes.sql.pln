@@ -1,0 +1,67 @@
+
+Explained.
+
+Plan hash value: 1896089370
+
+---------------------------------------------------------------------
+| Id  | Operation                          | Name                  | 
+---------------------------------------------------------------------
+|   0 | INSERT STATEMENT                   |                       | 
+|   1 |  SEQUENCE                          | WORKER_ID_SEQ         | 
+|   2 |   MERGE JOIN CARTESIAN             |                       | 
+|   3 |    MERGE JOIN CARTESIAN            |                       | 
+|   4 |     NESTED LOOPS                   |                       | 
+|   5 |      NESTED LOOPS                  |                       | 
+|   6 |       NESTED LOOPS                 |                       | 
+|   7 |        NESTED LOOPS                |                       | 
+|   8 |         TABLE ACCESS BY INDEX ROWID| GENDER_T              | 
+|*  9 |          INDEX UNIQUE SCAN         | GENDER_UK             | 
+|  10 |         TABLE ACCESS BY INDEX ROWID| GENDER_T              | 
+|* 11 |          INDEX UNIQUE SCAN         | GENDER_UK             | 
+|  12 |        TABLE ACCESS BY INDEX ROWID | WORKER_TYPE_T         | 
+|* 13 |         INDEX UNIQUE SCAN          | WORKER_TYPE_UK        | 
+|  14 |       TABLE ACCESS BY INDEX ROWID  | WORKER_TYPE_T         | 
+|* 15 |        INDEX UNIQUE SCAN           | WORKER_TYPE_UK        | 
+|  16 |      INDEX FULL SCAN               | A_THRU_Z_PK           | 
+|  17 |     BUFFER SORT                    |                       | 
+|  18 |      INDEX FAST FULL SCAN          | TOP_100_LAST_NAME_PK  | 
+|  19 |    BUFFER SORT                     |                       | 
+|  20 |     INDEX FAST FULL SCAN           | TOP_100_FIRST_NAME_PK | 
+---------------------------------------------------------------------
+
+---------------------------------------
+Rows  | Bytes | Cost (%CPU)| Time     |
+---------------------------------------
+  260K|  8378K|   586   (1)| 00:00:08 |
+      |       |            |          |
+  260K|  8378K|   586   (1)| 00:00:08 |
+ 2600 | 65000 |    12   (0)| 00:00:01 |
+   26 |   468 |     5   (0)| 00:00:01 |
+    1 |    16 |     4   (0)| 00:00:01 |
+    1 |    13 |     3   (0)| 00:00:01 |
+    1 |    10 |     2   (0)| 00:00:01 |
+    1 |     5 |     1   (0)| 00:00:01 |
+    1 |       |     0   (0)| 00:00:01 |
+    1 |     5 |     1   (0)| 00:00:01 |
+    1 |       |     0   (0)| 00:00:01 |
+    1 |     3 |     1   (0)| 00:00:01 |
+    1 |       |     0   (0)| 00:00:01 |
+    1 |     3 |     1   (0)| 00:00:01 |
+    1 |       |     0   (0)| 00:00:01 |
+   26 |    52 |     1   (0)| 00:00:01 |
+  100 |   700 |    11   (0)| 00:00:01 |
+  100 |   700 |     0   (0)| 00:00:01 |
+  100 |   800 |   585   (1)| 00:00:08 |
+  100 |   800 |     0   (0)| 00:00:01 |
+---------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   9 - access("C4"."CODE"='M')
+  11 - access("C3"."CODE"='F')
+  13 - access("C2"."CODE"='C')
+  15 - access("C1"."CODE"='E')
+
+35 rows selected.
+

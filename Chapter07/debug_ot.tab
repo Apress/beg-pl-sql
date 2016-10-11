@@ -1,0 +1,24 @@
+rem debug_ot.tab
+rem by Donald Bales on 12/15/2006
+rem Create debugging message table
+
+execute drop_if_exists('table','DEBUG_OT');
+create table DEBUG_OT of DEBUG_O
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+alter  table DEBUG_OT add
+constraint   DEBUG_OT_PK
+primary key (
+id )
+using index
+tablespace USERS pctfree 0
+storage (initial 1M next 1M pctincrease 0);
+
+execute drop_if_exists('sequence','DEBUG_ID_SEQ');
+create sequence DEBUG_ID_SEQ
+start with 1 order;
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'DEBUG_OT');
+
+grant all on DEBUG_OT to PUBLIC;

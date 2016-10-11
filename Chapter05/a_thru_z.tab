@@ -1,0 +1,15 @@
+rem a_thru_z.tab
+rem by Donald J. Bales on 12/15/2006
+rem The letters A through Z
+
+execute drop_if_exists('table','A_THRU_Z');
+create table A_THRU_Z (
+letter                         varchar2(1));
+
+alter  table A_THRU_Z add
+constraint   A_THRU_Z_PK
+primary key (
+letter )
+using index;
+
+@a_thru_z.ins

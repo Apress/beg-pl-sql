@@ -1,0 +1,17 @@
+rem top_100_first_name.tab
+rem by Donald J. Bales on 12/15/2006
+rem Top 100 first names from www.namestatistics.com
+
+execute drop_if_exists('table','TOP_100_FIRST_NAME');
+create table TOP_100_FIRST_NAME (
+first_name                     varchar2(30)                   not null,
+gender_code                    varchar2(1)                    not null);
+
+alter  table TOP_100_FIRST_NAME add
+constraint   TOP_100_FIRST_NAME_PK
+primary key (
+first_name,
+gender_code )
+using index;
+
+@top_100_first_name.ins

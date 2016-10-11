@@ -1,0 +1,150 @@
+declare
+
+-- Add worker history
+
+cursor c_logical_assignment is
+select a.worker_id,
+       a.active_date,
+       a.inactive_date,
+       w.code
+from   LOGICAL_ASSIGNMENT_T a,
+       LOGICAL_WORKPLACE_T w
+where  a.logical_workplace_id = w.id       
+order by 1;
+
+n_random                              number;
+r_physical_assignment                 PHYSICAL_ASSIGNMENT_T%ROWTYPE;
+
+FUNCTION get_id(
+aiv_code                       in     PHYSICAL_WORKPLACE_T.code%TYPE)
+return                                PHYSICAL_WORKPLACE_T.id%TYPE is
+
+n_id                                  PHYSICAL_WORKPLACE_T.id%TYPE;
+
+begin
+  select id
+  into   n_id
+  from   PHYSICAL_WORKPLACE_T
+  where  code = aiv_code;
+
+  return n_id;
+end get_id;
+  
+FUNCTION random(
+ain_min                        in     number,
+ain_max                        in     number )
+return                                number is
+
+begin
+  return round(SYS.DBMS_RANDOM.value(ain_min, ain_max), 0);
+end random;
+  
+begin
+  PHYSICAL_ASSIGNMENT_TS.n_inserted := 0;
+  PHYSICAL_ASSIGNMENT_TS.n_updated  := 0;
+  
+  for r_logical_assignment in c_logical_assignment loop
+    r_physical_assignment.id                      := NULL;
+    r_physical_assignment.worker_id               := r_logical_assignment.worker_id; 
+     
+    if    r_logical_assignment.code = 'VDMI' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'SALE' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'MKTG' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'ACCT' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'PDEV' then
+      r_physical_assignment.physical_workplace_id := get_id('GIN');
+    elsif r_logical_assignment.code = 'MFG'  then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'CHEM' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+      n_random := random(1, 3);
+      if c_logical_assignment%rowcount > 18 then
+        if    n_random = 1 then
+          r_physical_assignment.physical_workplace_id := get_id('CHEM');
+        elsif n_random = 2 then
+          r_physical_assignment.physical_workplace_id := get_id('MIX1');
+        else
+          r_physical_assignment.physical_workplace_id := get_id('DIS1');
+        end if;  
+      end if;
+    elsif r_logical_assignment.code = 'BIO'  then
+      r_physical_assignment.physical_workplace_id := get_id('LCA');
+      n_random := random(1, 3);
+      if c_logical_assignment%rowcount > 18 then
+        if    n_random = 1 then
+          r_physical_assignment.physical_workplace_id := get_id('GRV1');
+        elsif n_random = 2 then
+          r_physical_assignment.physical_workplace_id := get_id('DST2');
+        else
+          r_physical_assignment.physical_workplace_id := get_id('INC1');
+        end if;  
+      end if;
+    elsif r_logical_assignment.code = 'METL' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+      n_random := random(1, 3);
+      if c_logical_assignment%rowcount > 18 then
+        if    n_random = 1 then
+          r_physical_assignment.physical_workplace_id := get_id('METL');
+        elsif n_random = 2 then
+          r_physical_assignment.physical_workplace_id := get_id('SEP1');
+        else
+          r_physical_assignment.physical_workplace_id := get_id('CRS1');
+        end if;  
+      end if;
+    elsif r_logical_assignment.code = 'RUSE' then
+      r_physical_assignment.physical_workplace_id := get_id('GIN');
+      n_random := random(1, 3);
+      if c_logical_assignment%rowcount > 18 then
+        if    n_random = 1 then
+          r_physical_assignment.physical_workplace_id := get_id('RUSE');
+        elsif n_random = 2 then
+          r_physical_assignment.physical_workplace_id := get_id('SEP3');
+        else
+          r_physical_assignment.physical_workplace_id := get_id('CRS3');
+        end if;  
+      end if;
+    elsif r_logical_assignment.code = 'DISP' then
+      r_physical_assignment.physical_workplace_id := get_id('GIN');
+      n_random := random(1, 3);
+      if c_logical_assignment%rowcount > 18 then
+        if    n_random = 1 then
+          r_physical_assignment.physical_workplace_id := get_id('DISP');
+        elsif n_random = 2 then
+          r_physical_assignment.physical_workplace_id := get_id('SEP2');
+        else
+          r_physical_assignment.physical_workplace_id := get_id('CRS2');
+        end if;  
+      end if;
+    elsif r_logical_assignment.code = 'HR'   then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'IT'   then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'DP'   then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'HSUP' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'SDEV' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'SINT' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    elsif r_logical_assignment.code = 'SSUP' then
+      r_physical_assignment.physical_workplace_id := get_id('NNJ');
+    else
+      raise_application_error(-20000, 'Unsupported code');
+    end if;
+    
+    r_physical_assignment.active_date             := r_logical_assignment.active_date;
+    r_physical_assignment.inactive_date           := r_logical_assignment.inactive_date;
+    PHYSICAL_ASSIGNMENT_TS.set_row(r_physical_assignment);
+  end loop;
+   
+  commit;
+  pl(to_char(PHYSICAL_ASSIGNMENT_TS.n_inserted)||' rows inserted.');
+  pl(to_char(PHYSICAL_ASSIGNMENT_TS.n_updated)||' rows updated.');
+ end;
+ /
+ 

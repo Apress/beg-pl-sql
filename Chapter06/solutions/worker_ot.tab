@@ -1,0 +1,52 @@
+rem worker_ot.tab
+rem by Donald J. Bales on 12/15/2006
+rem Create an object table for Workers
+
+--drop   table WORKER_OT;
+create table WORKER_OT of WORKER_O
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+--drop   sequence WORKER_ID_SEQ;
+--create sequence WORKER_ID_SEQ
+--start with 1;
+
+--drop   sequence EXTERNAL_ID_SEQ;
+--create sequence EXTERNAL_ID_SEQ
+--start with 100000000 order;
+
+alter  table WORKER_OT add
+constraint   WORKER_OT_PK
+primary key ( id )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table WORKER_OT add
+constraint   WORKER_OT_UK1
+unique ( external_id )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table WORKER_OT add
+constraint   WORKER_OT_UK2
+unique (
+name,
+birth_date,
+gender_id )
+using index
+tablespace USERS pctfree 20
+storage (initial 10K next 10K pctincrease 0);
+
+alter  table WORKER_OT add
+constraint   WORKER_OT_FK1
+foreign key                 ( worker_type_id )
+references   WORKER_TYPE_OT ( id );
+
+alter  table WORKER_OT add
+constraint   WORKER_OT_FK2
+foreign key                 ( gender_id )
+references   GENDER_OT      ( id );
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'WORKER_OT');

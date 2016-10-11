@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>TOP_100_NAMES</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package TOP_100_NAMES</h2>
+<p class="comments_p">
+top_100_names.pks
+by Donald J. Bales on 12/15/2006
+Data Migration:
+Seed the Worker table with the top 100 names
+100 last x 100 first x 26 middle = 260,000 entries
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#help_7"><span class="method_name_span">help</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Display the help text for this package</span></td></tr>
+<tr><td class="method_name_td"><a href="#Initialize_10"><span class="method_name_span">Initialize</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Initializes package pseudo-constants, it is called</span></td></tr>
+<tr><td class="method_name_td"><a href="#Process_13"><span class="method_name_span">Process</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Migrates data (inserts or updates) from tables TOP_100_LAST_NAME,</span></td></tr>
+<tr><td class="method_name_td"><a href="#test_15"><span class="method_name_span">test</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Test the methods in this package</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#help_7">help</a></h3>
+<pre class="method_pre">
+PROCEDURE help
+</pre>
+<p class="comments_p">
+Display the help text for this package.
+</p>
+<hr/>
+<h3><a name="#Initialize_10">Initialize</a></h3>
+<pre class="method_pre">
+PROCEDURE Initialize
+</pre>
+<p class="comments_p">
+Initializes package pseudo-constants, it is called
+by the package body's initialization section.
+</p>
+<hr/>
+<h3><a name="#Process_13">Process</a></h3>
+<pre class="method_pre">
+PROCEDURE Process
+</pre>
+<p class="comments_p">
+Migrates data (inserts or updates) from tables TOP_100_LAST_NAME,
+TOP_100_FIRST_NAME, and A_THRU_Z to table WORKER_TS
+</p>
+<hr/>
+<h3><a name="#test_15">test</a></h3>
+<pre class="method_pre">
+PROCEDURE test
+</pre>
+<p class="comments_p">
+Test the methods in this package
+</p>
+<hr/>
+</body>
+</html>

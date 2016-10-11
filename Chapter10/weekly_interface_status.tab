@@ -1,0 +1,27 @@
+rem weekly_interface_status.tab
+rem by Donald J. Bales on 12/15/2006
+rem A Table to hold the multi-part status for a multi-part process
+
+execute drop_if_exists('TABLE', 'WEEKLY_INTERFACE_STATUS');
+create table WEEKLY_INTERFACE_STATUS (
+weekly_interface_status_id     number                         not null,
+download_date                  date,
+upload_date                    date,
+insert_user                    varchar2(30)  default USER     not null,
+insert_date                    date          default SYSDATE  not null,
+update_user                    varchar2(30)  default USER     not null,
+update_date                    date          default SYSDATE  not null)
+tablespace USERS pctfree 20
+storage (initial 1M next 1M pctincrease 0);
+
+alter  table WEEKLY_INTERFACE_STATUS add
+constraint   WEEKLY_INTERFACE_STATUS_PK
+primary key (
+weekly_interface_status_id )
+using index
+tablespace USERS pctfree 20
+storage (initial 1M next 1M pctincrease 0);
+
+-- A method will be used to calculate the primary key value
+
+execute SYS.DBMS_STATS.gather_table_stats(USER, 'WEEKLY_INTERFACE_STATUS');

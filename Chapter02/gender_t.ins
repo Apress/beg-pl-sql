@@ -1,0 +1,10 @@
+rem gender_t.ins
+rem by Donald J. Bales on 12/15/2006 
+rem Add code values to the gender table
+
+insert into GENDER_T ( id, code, description ) values ( GENDER_ID_SEQ.nextval, 'F', 'Female' );
+insert into GENDER_T ( id, code, description ) values ( GENDER_ID_SEQ.nextval, 'M', 'Male' );
+insert into GENDER_T ( id, code, description ) values ( GENDER_ID_SEQ.nextval, 'U', 'Unknown' );
+commit;
+
+SYS.DBMS_STATS.gather_table_stats(USER, 'GENDER_T');

@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>PARAMETERS</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Package PARAMETERS</h2>
+<p class="comments_p">
+parameters.pks
+by Donald J. Bales on 12/15/2006
+A packge to test parameter scope
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#in_out_inout_5"><span class="method_name_span">in_out_inout</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> A function that execises the scope of parameters</span></td></tr>
+<tr><td class="method_name_td"><a href="#in_out_inout_11"><span class="method_name_span">in_out_inout</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span"> A procedure that execises the scope of parameters</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#in_out_inout_5">in_out_inout</a></h3>
+<pre class="method_pre">
+FUNCTION in_out_inout(
+aiv_in                         in     varchar2,
+aov_out                           out varchar2,
+aiov_inout                     in out varchar2)
+return                                varchar2
+</pre>
+<p class="comments_p">
+A function that execises the scope of parameters
+</p>
+<hr/>
+<h3><a name="#in_out_inout_11">in_out_inout</a></h3>
+<pre class="method_pre">
+PROCEDURE in_out_inout(
+aiv_in                         in     varchar2,
+aov_out                           out varchar2,
+aiov_inout                     in out varchar2)
+</pre>
+<p class="comments_p">
+A procedure that execises the scope of parameters
+</p>
+<hr/>
+</body>
+</html>

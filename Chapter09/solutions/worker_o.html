@@ -1,0 +1,302 @@
+<html>
+<head>
+<title>WORKER_O</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+</head>
+<body>
+<h2>Type WORKER_O</h2>
+<p class="comments_p">
+worker_o.tps
+by Don Bales on 12/15/2006
+Type WORKER_O's attributes and methods.
+</p>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Attributes</th></tr>
+</table>
+<pre class="other_pre">
+</pre><p class="comments_p">
+worker_o.tps
+by Don Bales on 12/15/2006
+Type WORKER_O's attributes and methods.
+</p><pre class="other_pre">
+id                                    number,
+worker_type_id                        number,
+external_id                           varchar2(30),
+first_name                            varchar2(30),
+middle_name                           varchar2(30),
+last_name                             varchar2(30),
+name                                  varchar2(100),
+birth_date                            date,
+gender_id                             number,
+</pre>
+<hr/><br/>
+<table>
+<tr><th colspan="2">Method Summary</th></tr>
+<tr><td class="method_name_td"><a href="#get_age_14"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the worker's current age</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_age_17"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the worker's age on the specified date</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_age_22"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Calculate a worker's age for the given birth date</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_age_27"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Calculate a worker's current age for the given bith date</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_age_31"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the specified worker's age at the given point in time</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_age_36"><span class="method_name_span">get_age</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the specified worker's current age</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_birth_date_40"><span class="method_name_span">get_birth_date</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the specified worker's birth date</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_external_id_44"><span class="method_name_span">get_external_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the specified worker's external ID</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_formatted_name_47"><span class="method_name_span">get_formatted_name</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Calculate the locale specific formatted name</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_formatted_name_53"><span class="method_name_span">get_formatted_name</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the specified worker's formatted name</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_id_57"><span class="method_name_span">get_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the next primary key value for the table</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_id_60"><span class="method_name_span">get_id</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the specified worker's internal ID</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_row_64"><span class="method_name_span">get_row</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Get the specified worker's row object</span></td></tr>
+<tr><td class="method_name_td"><a href="#get_unformatted_name_68"><span class="method_name_span">get_unformatted_name</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Calculate the non-locale specific unformmated name</span></td></tr>
+<tr><td class="method_name_td"><a href="#help,_74"><span class="method_name_span">help,</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Display the help text for this TYPE</span></td></tr>
+<tr><td class="method_name_td"><a href="#is_duplicate_77"><span class="method_name_span">is_duplicate</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Check to see if a worker with the same name, birth_date and</span></td></tr>
+<tr><td class="method_name_td"><a href="#set_row_83"><span class="method_name_span">set_row</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Set the specified worker's row object</span></td></tr>
+<tr><td class="method_name_td"><a href="#test,_86"><span class="method_name_span">test,</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">Execute the test unit for this TYPE</span></td></tr>
+<tr><td class="method_name_td"><a href="#to_varchar2_88"><span class="method_name_span">to_varchar2</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">The MAP function for this TYPE</span></td></tr>
+<tr><td class="method_name_td"><a href="#worker_o_91"><span class="method_name_span">worker_o</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">A convenience constructor for this TYPE</span></td></tr>
+<tr><td class="method_name_td"><a href="#worker_o_101"><span class="method_name_span">worker_o</span></a></td>
+<td class="first_sentence_td"><span class="first_sentence_span">A NULL values constructor for this TYPE</span></td></tr>
+</table>
+<br/><hr/><br/>
+<table>
+<tr><th colspan="2">Method Detail</th></tr>
+</table>
+<h3><a name="#get_age_14">get_age</a></h3>
+<pre class="method_pre">
+MEMBER FUNCTION get_age
+return                                number,
+</pre>
+<p class="comments_p">
+Get the worker's current age.
+</p>
+<hr/>
+<h3><a name="#get_age_17">get_age</a></h3>
+<pre class="method_pre">
+MEMBER FUNCTION get_age(
+aid_on                                date)
+return                                number,
+</pre>
+<p class="comments_p">
+Get the worker's age on the specified date.
+</p>
+<hr/>
+<h3><a name="#get_age_22">get_age</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_age(
+aid_birth_date                 in     date,
+aid_on                         in     date)
+return                                number,
+</pre>
+<p class="comments_p">
+Calculate a worker's age for the given birth date
+and point in time.
+</p>
+<hr/>
+<h3><a name="#get_age_27">get_age</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_age(
+aid_birth_date                 in     date)
+return                                number,
+</pre>
+<p class="comments_p">
+Calculate a worker's current age for the given bith date.
+</p>
+<hr/>
+<h3><a name="#get_age_31">get_age</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_age(
+ain_id                         in     number,
+aid_on                         in     date)
+return                                number,
+</pre>
+<p class="comments_p">
+Get the specified worker's age at the given point in time.
+</p>
+<hr/>
+<h3><a name="#get_age_36">get_age</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_age(
+ain_id                         in     number)
+return                                number,
+</pre>
+<p class="comments_p">
+Get the specified worker's current age.
+</p>
+<hr/>
+<h3><a name="#get_birth_date_40">get_birth_date</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_birth_date(
+ain_id                         in     number)
+return                                date,
+</pre>
+<p class="comments_p">
+Get the specified worker's birth date.
+</p>
+<hr/>
+<h3><a name="#get_external_id_44">get_external_id</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_external_id
+return                                varchar2,
+</pre>
+<p class="comments_p">
+Get the specified worker's external ID.
+</p>
+<hr/>
+<h3><a name="#get_formatted_name_47">get_formatted_name</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_formatted_name(
+aiv_first_name                 in     varchar2,
+aiv_middle_name                in     varchar2,
+aiv_last_name                  in     varchar2)
+return                                varchar2,
+</pre>
+<p class="comments_p">
+Calculate the locale specific formatted name.
+</p>
+<hr/>
+<h3><a name="#get_formatted_name_53">get_formatted_name</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_formatted_name(
+ain_id                         in     number)
+return                                varchar2,
+</pre>
+<p class="comments_p">
+Get the specified worker's formatted name.
+</p>
+<hr/>
+<h3><a name="#get_id_57">get_id</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_id
+return                                number,
+</pre>
+<p class="comments_p">
+Get the next primary key value for the table.
+</p>
+<hr/>
+<h3><a name="#get_id_60">get_id</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_id(
+aiv_external_id                in     varchar2)
+return                                number,
+</pre>
+<p class="comments_p">
+Get the specified worker's internal ID.
+</p>
+<hr/>
+<h3><a name="#get_row_64">get_row</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_row(
+aio_worker                     in     WORKER_O)
+return                                WORKER_O,
+</pre>
+<p class="comments_p">
+Get the specified worker's row object.
+</p>
+<hr/>
+<h3><a name="#get_unformatted_name_68">get_unformatted_name</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION get_unformatted_name(
+aiv_first_name                 in     varchar2,
+aiv_middle_name                in     varchar2,
+aiv_last_name                  in     varchar2)
+return                                varchar2,
+</pre>
+<p class="comments_p">
+Calculate the non-locale specific unformmated name.
+</p>
+<hr/>
+<h3><a name="#help,_74">help,</a></h3>
+<pre class="method_pre">
+MEMBER PROCEDURE help,
+</pre>
+<p class="comments_p">
+Display the help text for this TYPE.
+</p>
+<hr/>
+<h3><a name="#is_duplicate_77">is_duplicate</a></h3>
+<pre class="method_pre">
+STATIC FUNCTION is_duplicate(
+aiv_name                       in     varchar2,
+aid_birth_date                 in     varchar2,
+ain_gender_id                  in     varchar2)
+return                                boolean,
+</pre>
+<p class="comments_p">
+Check to see if a worker with the same name, birth_date and
+gender already exists in the database.
+</p>
+<hr/>
+<h3><a name="#set_row_83">set_row</a></h3>
+<pre class="method_pre">
+STATIC PROCEDURE set_row(
+aioo_worker                    in out WORKER_O),
+</pre>
+<p class="comments_p">
+Set the specified worker's row object.
+</p>
+<hr/>
+<h3><a name="#test,_86">test,</a></h3>
+<pre class="method_pre">
+MEMBER PROCEDURE test,
+</pre>
+<p class="comments_p">
+Execute the test unit for this TYPE.
+</p>
+<hr/>
+<h3><a name="#to_varchar2_88">to_varchar2</a></h3>
+<pre class="method_pre">
+MAP MEMBER FUNCTION to_varchar2
+return                                varchar2,
+</pre>
+<p class="comments_p">
+The MAP function for this TYPE.
+</p>
+<hr/>
+<h3><a name="#worker_o_91">worker_o</a></h3>
+<pre class="method_pre">
+CONSTRUCTOR FUNCTION worker_o(
+self                           in out worker_o,
+ain_worker_type_id             in     number,
+aiv_first_name                 in     varchar2,
+aiv_middle_name                in     varchar2,
+aiv_last_name                  in     varchar2,
+aid_birth_date                 in     date,
+ain_gender_id                  in     number)
+return                                self as result,
+</pre>
+<p class="comments_p">
+A convenience constructor for this TYPE.
+</p>
+<hr/>
+<h3><a name="#worker_o_101">worker_o</a></h3>
+<pre class="method_pre">
+CONSTRUCTOR FUNCTION worker_o(
+self                           in out worker_o)
+return                                self as result
+)
+</pre>
+<p class="comments_p">
+A NULL values constructor for this TYPE.
+</p>
+<hr/>
+</body>
+</html>

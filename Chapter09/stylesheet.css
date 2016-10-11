@@ -1,0 +1,17 @@
+h2    { font-size: 140% }
+h3    { font-size: 120% }
+
+table { border-collapse: collapse; border-color: gray; border-style: solid; border-width: 1; background-color: white;     text-align: left; width: 100% }
+th    {                            border-color: gray; border-style: solid; border-width: 1; background-color: lightgrey; padding: 3; font-size: 125% }
+td    {                            border-color: gray; border-style: solid; border-width: 1; background-color: white;     padding: 3; font-size: 100% }
+ 
+.method_name_td      { width: 20% }
+.method_name_span    { font-size: 80%; font-family: Monospace, New Courier; }
+.method_pre          { font-size: 80%; font-family: Monospace, New Courier; }
+.package_name_td     { width: 20% }
+.package_name_span   { font-size: 80%; font-family: Monospace, New Courier; }
+.first_sentence_td   { }
+.first_sentence_span { font-size:  80%; font-family: Helvetica, Arial, sans-serif; }
+.comments_td         { }
+.comments_span       { font-size:  80%; font-family: Helvetica, Arial, sans-serif; }
+.comments_p          { font-size:  80%; font-family: Helvetica, Arial, sans-serif; }
